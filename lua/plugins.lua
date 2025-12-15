@@ -291,6 +291,37 @@ require("lazy").setup({
     end,
   },
 
+  -- LazyGit integration
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  -- Open file/line on GitHub
+  {
+    "ruifm/gitlinker.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("gitlinker").setup({
+        opts = {
+          add_current_line_on_normal_mode = true,
+          action_callback = require("gitlinker.actions").copy_to_clipboard,
+          print_url = true,
+        },
+        mappings = nil, -- We'll set up custom keymaps
+      })
+    end,
+  },
+
   -- Telescope fuzzy finder
   {
     "nvim-telescope/telescope.nvim",

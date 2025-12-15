@@ -146,9 +146,12 @@ vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = 'Help
 vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'Recent files' })
 
 -- Git keybindings
+vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = 'LazyGit' })
 vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>', { desc = 'Git blame line' })
 vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'Preview hunk' })
 vim.keymap.set('n', '<leader>gh', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'Reset hunk' })
+vim.keymap.set('n', '<leader>gy', '<cmd>lua require("gitlinker").get_buf_range_url("n")<cr>', { desc = 'Copy GitHub link' })
+vim.keymap.set('v', '<leader>gy', '<cmd>lua require("gitlinker").get_buf_range_url("v")<cr>', { desc = 'Copy GitHub link (selection)' })
 
 -- VimWiki keybindings
 vim.keymap.set('n', '<leader>ww', '<Plug>VimwikiIndex', { desc = 'Wiki index' })
