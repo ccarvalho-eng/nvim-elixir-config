@@ -329,6 +329,90 @@ require("lazy").setup({
         { "<leader>f", group = "Find/Telescope" },
         { "<leader>g", group = "Git" },
         { "<leader>t", group = "Test" },
+        { "<leader>w", group = "Wiki" },
+      })
+    end,
+  },
+
+  -- VimWiki for note-taking
+  {
+    "vimwiki/vimwiki",
+    init = function()
+      -- Get wiki path from environment variable or use default
+      local wiki_path = vim.env.VIMWIKI_PATH or '~/vimwiki/'
+
+      vim.g.vimwiki_list = {
+        {
+          path = wiki_path,
+          syntax = 'markdown',
+          ext = '.md',
+        }
+      }
+
+      vim.g.vimwiki_ext2syntax = {
+        ['.md'] = 'markdown',
+        ['.markdown'] = 'markdown',
+        ['.mdown'] = 'markdown',
+      }
+
+      -- Don't treat all markdown files as vimwiki
+      vim.g.vimwiki_global_ext = 0
+      vim.g.vimwiki_table_mappings = 0
+    end,
+  },
+
+  -- nvim-tree file explorer
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require('nvim-tree').setup({
+        disable_netrw = true,
+        hijack_netrw = true,
+        view = {
+          width = 30,
+          number = true,
+          relativenumber = true,
+        },
+        renderer = {
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = true,
+            },
+          },
+        },
+        filters = {
+          dotfiles = false,
+        },
+      })
+    end,
+  },
+
+  -- Tree-sitter for better syntax highlighting
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
+      if not status_ok then
+        return
+      end
+
+      configs.setup({
+        ensure_installed = { "elixir", "heex", "eex", "lua", "vim", "vimdoc", "markdown" },
+        sync_install = false,
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+        indent = {
+          enable = true,
+        },
       })
     end,
   },

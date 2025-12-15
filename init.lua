@@ -43,6 +43,9 @@ vim.opt.swapfile = false
 -- Load plugins
 require("plugins")
 
+-- Load vimwiki diary template
+require("config.vimwiki-diary-template").setup()
+
 -- LSP Keybindings (set when LSP attaches)
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -101,6 +104,9 @@ vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' }
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
 
+-- File explorer
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<cr>', { desc = 'Toggle file tree' })
+
 -- Toggle between module and test file
 local function toggle_test_file()
   local file = vim.fn.expand('%:p')
@@ -143,6 +149,18 @@ vim.keymap.set('n', '<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'Recen
 vim.keymap.set('n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>', { desc = 'Git blame line' })
 vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'Preview hunk' })
 vim.keymap.set('n', '<leader>gh', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'Reset hunk' })
+
+-- VimWiki keybindings
+vim.keymap.set('n', '<leader>ww', '<Plug>VimwikiIndex', { desc = 'Wiki index' })
+vim.keymap.set('n', '<leader>wt', '<Plug>VimwikiTabIndex', { desc = 'Wiki in tab' })
+vim.keymap.set('n', '<leader>wi', '<Plug>VimwikiDiaryIndex', { desc = 'Diary index' })
+vim.keymap.set('n', '<leader>w<leader>w', '<Plug>VimwikiMakeDiaryNote', { desc = 'Today diary' })
+vim.keymap.set('n', '<leader>w<leader>t', '<Plug>VimwikiTabMakeDiaryNote', { desc = 'Today diary (tab)' })
+vim.keymap.set('n', '<leader>w<leader>y', '<Plug>VimwikiMakeYesterdayDiaryNote', { desc = 'Yesterday diary' })
+vim.keymap.set('n', '<leader>w<leader>m', '<Plug>VimwikiMakeTomorrowDiaryNote', { desc = 'Tomorrow diary' })
+vim.keymap.set('n', '<leader>wd', function()
+  require('config.vimwiki').open_diary_modal()
+end, { desc = 'Diary modal' })
 
 -- vim-test Keybindings
 vim.keymap.set('n', '<leader>tn', '<cmd>TestNearest<cr>', { desc = 'Test nearest' })
