@@ -1,0 +1,335 @@
+-- Bootstrap lazy.nvim plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Plugin specifications
+require("lazy").setup({
+  -- OneDark theme
+  {
+    "navarasu/onedark.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('onedark').setup({
+        style = 'dark',
+      })
+      require('onedark').load()
+    end,
+  },
+
+  -- Lualine status line
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'onedark',
+          component_separators = { left = '|', right = '|'},
+          section_separators = { left = '', right = ''},
+        },
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'branch', 'diff', 'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'}
+        },
+      })
+    end,
+  },
+
+  -- Noice for better UI
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        presets = {
+          bottom_search = true,
+          command_palette = true,
+          long_message_to_split = true,
+          inc_rename = false,
+          lsp_doc_border = false,
+        },
+      })
+    end,
+  },
+
+  -- Notify
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup({
+        background_colour = "#000000",
+        render = "compact",
+        stages = "fade",
+      })
+      vim.notify = require("notify")
+    end,
+  },
+
+  -- Plenary (required by many plugins)
+  {
+    "nvim-lua/plenary.nvim",
+  },
+
+  -- Snacks (terminal provider for Claude Code)
+  {
+    "folke/snacks.nvim",
+    lazy = false,
+  },
+
+  -- Claude Code integration
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = function()
+      require("claudecode").setup({
+        terminal = {
+          split_side = "right",
+          split_width_percentage = 0.35,
+          git_repo_cwd = true,
+          provider = "snacks",
+        },
+        selection = {
+          track_selection = true,
+          focus_after_send = true,
+        },
+        diff = {
+          auto_close_on_accept = true,
+          vertical_split = true,
+        },
+      })
+    end,
+  },
+
+  -- Elixir syntax highlighting (vim-elixir)
+  {
+    "elixir-editors/vim-elixir",
+    ft = { "elixir", "eelixir", "heex", "surface" },
+  },
+
+  -- Elixir LSP (elixir-tools.nvim)
+  {
+    "elixir-tools/elixir-tools.nvim",
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
+
+      elixir.setup({
+        nextls = { enable = false },
+        elixirls = {
+          enable = true,
+          -- Use existing Mason installation
+          cmd = vim.fn.expand("~/.local/share/nvim/mason/bin/elixir-ls"),
+          settings = elixirls.settings({
+            dialyzerEnabled = true,
+            enableTestLenses = true,
+          }),
+          on_attach = function(client, bufnr)
+            -- Format on save
+            if client.supports_method("textDocument/formatting") then
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({ async = false })
+                end,
+              })
+            end
+          end,
+        },
+        projectionist = { enable = false },
+      })
+    end,
+  },
+
+  -- Mason for managing language servers
+  {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "elixirls" },
+        automatic_installation = true,
+      })
+    end,
+  },
+
+  -- Autocompletion
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+        }, {
+          { name = 'buffer' },
+          { name = 'path' },
+        })
+      })
+    end,
+  },
+
+  -- vim-test for running tests
+  {
+    "vim-test/vim-test",
+    config = function()
+      vim.g['test#strategy'] = 'neovim'
+      vim.g['test#neovim#term_position'] = 'vertical'
+    end,
+  },
+
+  -- Autopairs (auto-close brackets, quotes, etc.)
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({
+        check_ts = false,
+        disable_filetype = { "TelescopePrompt" },
+      })
+
+      -- Integration with nvim-cmp
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
+
+  -- Commenting (gcc to comment line, gc in visual mode)
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+
+  -- Surround text objects (cs"' to change " to ')
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end,
+  },
+
+  -- Git signs in gutter
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup({
+        signs = {
+          add = { text = "│" },
+          change = { text = "│" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+        },
+      })
+    end,
+  },
+
+  -- Telescope fuzzy finder
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Telescope",
+    config = function()
+      require("telescope").setup({
+        defaults = {
+          mappings = {
+            i = {
+              ["<C-j>"] = "move_selection_next",
+              ["<C-k>"] = "move_selection_previous",
+            },
+          },
+        },
+      })
+    end,
+  },
+
+  -- which-key for keybinding hints
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      local wk = require("which-key")
+      wk.setup({
+        preset = "modern",
+        delay = 300,
+      })
+
+      -- Register key group names
+      wk.add({
+        { "<leader>a", group = "AI/Claude" },
+        { "<leader>b", group = "Buffer" },
+        { "<leader>c", group = "Code/LSP" },
+        { "<leader>f", group = "Find/Telescope" },
+        { "<leader>g", group = "Git" },
+        { "<leader>t", group = "Test" },
+      })
+    end,
+  },
+})
