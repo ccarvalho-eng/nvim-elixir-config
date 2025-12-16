@@ -21,6 +21,9 @@ require("lazy").setup({
     priority = 1000,
     config = function()
       require('solarized').setup({
+        styles = {
+          comments = { italic = true },
+        },
         transparent = {
           enabled = false,
         },
