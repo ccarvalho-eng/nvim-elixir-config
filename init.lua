@@ -46,6 +46,21 @@ require("plugins")
 -- Load vimwiki diary template
 require("config.vimwiki-diary-template").setup()
 
+-- Toggle between Solarized dark and light
+local function toggle_theme()
+  if vim.opt.background:get() == "dark" then
+    vim.opt.background = "light"
+    vim.cmd("colorscheme solarized-light")
+  else
+    vim.opt.background = "dark"
+    vim.cmd("colorscheme solarized")
+  end
+end
+
+-- Set initial theme to Solarized dark
+vim.opt.background = "dark"
+vim.cmd("colorscheme solarized")
+
 -- LSP Keybindings (set when LSP attaches)
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -69,6 +84,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Quality of Life Keybindings
 -- Clear search highlighting
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlighting' })
+
+-- Toggle between Solarized light and dark
+vim.keymap.set('n', '<leader>ut', toggle_theme, { desc = 'Toggle Solarized light/dark' })
 
 -- Better window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })

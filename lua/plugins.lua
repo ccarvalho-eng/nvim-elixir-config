@@ -14,16 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin specifications
 require("lazy").setup({
-  -- OneDark theme
+  -- Solarized theme
   {
-    "navarasu/onedark.nvim",
+    "maxmx03/solarized.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require('onedark').setup({
-        style = 'dark',
+      require('solarized').setup({
+        transparent = {
+          enabled = false,
+        },
       })
-      require('onedark').load()
     end,
   },
 
@@ -34,7 +35,7 @@ require("lazy").setup({
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'onedark',
+          theme = 'auto',
           component_separators = { left = '|', right = '|'},
           section_separators = { left = '', right = ''},
         },
@@ -360,6 +361,7 @@ require("lazy").setup({
         { "<leader>f", group = "Find/Telescope" },
         { "<leader>g", group = "Git" },
         { "<leader>t", group = "Test" },
+        { "<leader>u", group = "UI" },
         { "<leader>w", group = "Wiki" },
       })
     end,
