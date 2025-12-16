@@ -41,7 +41,7 @@ local function generate_template()
     "",
     "- Output delivered",
     "- What’s in progress",
-    "- Blockers or dependencies",,
+    "- Blockers or dependencies",
     "",
     "## Reflection",
     "",
