@@ -50,11 +50,10 @@ require("config.vimwiki-diary-template").setup()
 local function toggle_theme()
   if vim.opt.background:get() == "dark" then
     vim.opt.background = "light"
-    vim.cmd("colorscheme solarized-light")
   else
     vim.opt.background = "dark"
-    vim.cmd("colorscheme solarized")
   end
+  vim.cmd("colorscheme solarized")
 end
 
 -- Set initial theme to Solarized dark
