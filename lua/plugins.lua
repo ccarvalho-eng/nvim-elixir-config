@@ -14,18 +14,16 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin specifications
 require("lazy").setup({
-  -- Solarized theme
+  -- One Dark theme
   {
-    "maxmx03/solarized.nvim",
+    "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require('solarized').setup({
-        styles = {
-          comments = { italic = true },
-        },
-        transparent = {
-          enabled = false,
+      require('onedark').setup({
+        style = 'dark',
+        code_style = {
+          comments = 'italic',
         },
       })
     end,

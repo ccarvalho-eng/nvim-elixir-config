@@ -46,19 +46,30 @@ require("plugins")
 -- Load vimwiki diary template
 require("config.vimwiki-diary-template").setup()
 
--- Toggle between Solarized dark and light
+-- Cycle through One Dark styles: dark -> darker -> light -> dark
 local function toggle_theme()
-  if vim.opt.background:get() == "dark" then
-    vim.opt.background = "light"
-  else
-    vim.opt.background = "dark"
+  local styles = { "dark", "darker", "light" }
+  local current = vim.g.onedark_style or "dark"
+
+  -- Find current index
+  local current_index = 1
+  for i, style in ipairs(styles) do
+    if style == current then
+      current_index = i
+      break
+    end
   end
-  vim.cmd("colorscheme solarized")
+
+  -- Cycle to next style
+  local next_index = (current_index % #styles) + 1
+  vim.g.onedark_style = styles[next_index]
+  require('onedark').setup({ style = styles[next_index] })
+  require('onedark').load()
 end
 
--- Set initial theme to Solarized dark
-vim.opt.background = "dark"
-vim.cmd("colorscheme solarized")
+-- Set initial theme to One Dark dark
+vim.g.onedark_style = "dark"
+vim.cmd("colorscheme onedark")
 
 -- LSP Keybindings (set when LSP attaches)
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -84,8 +95,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Clear search highlighting
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlighting' })
 
--- Toggle between Solarized light and dark
-vim.keymap.set('n', '<leader>ut', toggle_theme, { desc = 'Toggle Solarized light/dark' })
+-- Cycle through One Dark styles
+vim.keymap.set('n', '<leader>ut', toggle_theme, { desc = 'Cycle One Dark styles' })
 
 -- Better window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
