@@ -43,9 +43,6 @@ vim.opt.swapfile = false
 -- Load plugins
 require("plugins")
 
--- Load vimwiki diary template
-require("config.vimwiki-diary-template").setup()
-
 -- Cycle through One Dark styles: dark -> darker -> light -> dark
 local function toggle_theme()
   local styles = { "dark", "darker", "light" }
@@ -180,18 +177,6 @@ vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'Pr
 vim.keymap.set('n', '<leader>gh', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'Reset hunk' })
 vim.keymap.set('n', '<leader>gy', '<cmd>lua require("gitlinker").get_buf_range_url("n")<cr>', { desc = 'Copy GitHub link' })
 vim.keymap.set('v', '<leader>gy', '<cmd>lua require("gitlinker").get_buf_range_url("v")<cr>', { desc = 'Copy GitHub link (selection)' })
-
--- VimWiki keybindings
-vim.keymap.set('n', '<leader>ww', '<Plug>VimwikiIndex', { desc = 'Wiki index' })
-vim.keymap.set('n', '<leader>wt', '<Plug>VimwikiTabIndex', { desc = 'Wiki in tab' })
-vim.keymap.set('n', '<leader>wi', '<Plug>VimwikiDiaryIndex', { desc = 'Diary index' })
-vim.keymap.set('n', '<leader>w<leader>w', '<Plug>VimwikiMakeDiaryNote', { desc = 'Today diary' })
-vim.keymap.set('n', '<leader>w<leader>t', '<Plug>VimwikiTabMakeDiaryNote', { desc = 'Today diary (tab)' })
-vim.keymap.set('n', '<leader>w<leader>y', '<Plug>VimwikiMakeYesterdayDiaryNote', { desc = 'Yesterday diary' })
-vim.keymap.set('n', '<leader>w<leader>m', '<Plug>VimwikiMakeTomorrowDiaryNote', { desc = 'Tomorrow diary' })
-vim.keymap.set('n', '<leader>wd', function()
-  require('config.vimwiki').open_diary_modal()
-end, { desc = 'Diary modal' })
 
 -- vim-test Keybindings
 vim.keymap.set('n', '<leader>tn', '<cmd>TestNearest<cr>', { desc = 'Test nearest' })

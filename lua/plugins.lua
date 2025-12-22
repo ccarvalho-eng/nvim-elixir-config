@@ -363,35 +363,7 @@ require("lazy").setup({
         { "<leader>g", group = "Git" },
         { "<leader>t", group = "Test" },
         { "<leader>u", group = "UI" },
-        { "<leader>w", group = "Wiki" },
       })
-    end,
-  },
-
-  -- VimWiki for note-taking
-  {
-    "vimwiki/vimwiki",
-    init = function()
-      -- Get wiki path from environment variable or use default
-      local wiki_path = vim.env.VIMWIKI_PATH or '~/vimwiki/'
-
-      vim.g.vimwiki_list = {
-        {
-          path = wiki_path,
-          syntax = 'markdown',
-          ext = '.md',
-        }
-      }
-
-      vim.g.vimwiki_ext2syntax = {
-        ['.md'] = 'markdown',
-        ['.markdown'] = 'markdown',
-        ['.mdown'] = 'markdown',
-      }
-
-      -- Don't treat all markdown files as vimwiki
-      vim.g.vimwiki_global_ext = 0
-      vim.g.vimwiki_table_mappings = 0
     end,
   },
 
