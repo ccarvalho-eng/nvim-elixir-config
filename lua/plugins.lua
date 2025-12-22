@@ -339,8 +339,34 @@ require("lazy").setup({
             },
           },
         },
+        extensions = {
+          project = {
+            base_dirs = {
+              '~/Projects',
+            },
+            hidden_files = false,
+            order_by = "recent",
+            search_by = "title",
+            on_project_selected = function(prompt_bufnr)
+              local project_actions = require("telescope._extensions.project.actions")
+              project_actions.change_working_directory(prompt_bufnr, false)
+
+              -- Update nvim-tree to the new project directory
+              require("nvim-tree.api").tree.change_root(vim.fn.getcwd())
+            end,
+          },
+        },
       })
+
+      -- Load telescope-project extension
+      require('telescope').load_extension('project')
     end,
+  },
+
+  -- Telescope project management
+  {
+    "nvim-telescope/telescope-project.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
   },
 
   -- which-key for keybinding hints
