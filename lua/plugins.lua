@@ -52,6 +52,39 @@ require("lazy").setup({
     end,
   },
 
+  -- Bufferline for tabs
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("bufferline").setup({
+        options = {
+          mode = "buffers",
+          numbers = "none",
+          close_command = "bdelete! %d",
+          right_mouse_command = "bdelete! %d",
+          left_mouse_command = "buffer %d",
+          indicator = {
+            style = 'underline',
+          },
+          diagnostics = "nvim_lsp",
+          offsets = {
+            {
+              filetype = "NvimTree",
+              text = "File Explorer",
+              text_align = "center",
+              separator = true,
+            }
+          },
+          show_buffer_close_icons = true,
+          show_close_icon = false,
+          separator_style = "thin",
+        },
+      })
+    end,
+  },
+
   -- Noice for better UI
   {
     "folke/noice.nvim",
