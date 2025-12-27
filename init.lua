@@ -95,6 +95,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highl
 -- Cycle through One Dark styles
 vim.keymap.set('n', '<leader>ut', toggle_theme, { desc = 'Cycle One Dark styles' })
 
+-- Dashboard
+vim.keymap.set('n', '<leader>ud', '<cmd>lua Snacks.dashboard()<cr>', { desc = 'Open dashboard' })
+
 -- Better window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to bottom window' })
