@@ -85,6 +85,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Code action' }))
     vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format({ async = false }) end,
       vim.tbl_extend('force', opts, { desc = 'Format buffer' }))
+    vim.keymap.set('n', '<leader>cD', function()
+      local line = vim.api.nvim_get_current_line()
+      local cursor = vim.api.nvim_win_get_cursor(0)
+      local indent = line:match("^%s*") or ""
+      vim.api.nvim_buf_set_lines(0, cursor[1], cursor[1], false, {indent .. "dbg()"})
+      vim.api.nvim_win_set_cursor(0, {cursor[1] + 1, #indent + 4})
+    end, vim.tbl_extend('force', opts, { desc = 'Insert dbg()' }))
   end,
 })
 
