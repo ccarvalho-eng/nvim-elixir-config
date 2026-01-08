@@ -88,10 +88,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>cD', function()
       local line = vim.api.nvim_get_current_line()
       local cursor = vim.api.nvim_win_get_cursor(0)
-      local indent = line:match("^%s*") or ""
-      vim.api.nvim_buf_set_lines(0, cursor[1], cursor[1], false, {indent .. "dbg()"})
-      vim.api.nvim_win_set_cursor(0, {cursor[1] + 1, #indent + 4})
-    end, vim.tbl_extend('force', opts, { desc = 'Insert dbg()' }))
+      local new_line = line .. " |> dbg()"
+      vim.api.nvim_set_current_line(new_line)
+      vim.api.nvim_win_set_cursor(0, {cursor[1], #new_line - 1})
+    end, vim.tbl_extend('force', opts, { desc = 'Append |> dbg()' }))
   end,
 })
 
