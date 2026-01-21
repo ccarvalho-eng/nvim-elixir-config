@@ -65,7 +65,7 @@ local function toggle_theme()
 end
 
 -- Set initial theme to One Dark dark
-vim.g.onedark_style = "dark"
+vim.g.onedark_style = "darker"
 vim.cmd("colorscheme onedark")
 
 -- LSP Keybindings (set when LSP attaches)
