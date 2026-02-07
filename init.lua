@@ -142,6 +142,13 @@ vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
 -- File explorer
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<cr>', { desc = 'Toggle file tree' })
 
+-- Terminal
+vim.keymap.set('n', '<C-\\>', function()
+  local height = math.floor(vim.o.lines * 0.25)
+  vim.cmd('botright ' .. height .. 'split | terminal')
+  vim.cmd('startinsert')
+end, { desc = 'Open terminal at bottom (25%)' })
+
 -- Toggle between module and test file
 local function toggle_test_file()
   local file = vim.fn.expand('%:p')
