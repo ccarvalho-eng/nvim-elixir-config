@@ -423,6 +423,7 @@ require("lazy").setup({
         { "<leader>c", group = "Code/LSP" },
         { "<leader>f", group = "Find/Telescope" },
         { "<leader>g", group = "Git" },
+        { "<leader>s", group = " Shell" },
         { "<leader>t", group = "Test" },
         { "<leader>u", group = "UI" },
       })
