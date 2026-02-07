@@ -143,7 +143,7 @@ vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<cr>', { desc = 'Toggle file tree' })
 
 -- Terminal
-vim.keymap.set('n', '<C-\\>', function()
+vim.keymap.set('n', '<leader>th', function()
   local height = math.floor(vim.o.lines * 0.25)
   vim.cmd('botright ' .. height .. 'split | terminal')
   vim.cmd('startinsert')
