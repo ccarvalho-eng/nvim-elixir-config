@@ -165,7 +165,45 @@ local function toggle_test_file()
   if vim.fn.filereadable(alternate_file) == 1 then
     vim.cmd('edit ' .. alternate_file)
   else
-    vim.notify('File not found: ' .. alternate_file, vim.log.levels.WARN)
+    -- Create test file if it doesn't exist
+    if alternate_file:match('_test%.exs$') then
+      local dir = vim.fn.fnamemodify(alternate_file, ':h')
+      vim.fn.mkdir(dir, 'p')
+
+      -- Extract module name from source file
+      local module_name = nil
+      if vim.fn.filereadable(file) == 1 then
+        local lines = vim.fn.readfile(file)
+        for _, line in ipairs(lines) do
+          local match = line:match('^%s*defmodule%s+([%w%.]+)')
+          if match then
+            module_name = match
+            break
+          end
+        end
+      end
+
+      -- Fallback to filename if module not found
+      if not module_name then
+        module_name = vim.fn.fnamemodify(file, ':t:r')
+        module_name = module_name:sub(1, 1):upper() .. module_name:sub(2)
+      end
+
+      local content = string.format([[defmodule %sTest do
+  use ExUnit.Case
+  doctest %s
+
+  test "" do
+  end
+end
+]], module_name, module_name)
+
+      vim.fn.writefile(vim.split(content, '\n'), alternate_file)
+      vim.cmd('edit ' .. alternate_file)
+      vim.notify('Created: ' .. alternate_file, vim.log.levels.INFO)
+    else
+      vim.notify('File not found: ' .. alternate_file, vim.log.levels.WARN)
+    end
   end
 end
 
