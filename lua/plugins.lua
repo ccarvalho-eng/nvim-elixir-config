@@ -234,7 +234,7 @@ require("lazy").setup({
     config = function()
       require("CopilotChat").setup({
         debug = false,
-        model = 'gpt-4o',
+        model = 'claude-3.5-sonnet',
         auto_insert_mode = true,
         auto_follow_cursor = true,
         show_help = true,
