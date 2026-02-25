@@ -545,7 +545,7 @@ require("lazy").setup({
 
       -- Register key group names
       wk.add({
-        { "<leader>a", group = "AI Assistants" },
+        { "<leader>a", group = "AI" },
         { "<leader>ac", group = "Claude Code" },
         { "<leader>ap", group = "GitHub Copilot" },
         { "<leader>apq", group = "Ask Copilot" },
