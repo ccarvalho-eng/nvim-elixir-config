@@ -207,16 +207,41 @@ end
   end
 end
 
--- Claude Code keybindings
-vim.keymap.set('n', '<leader>ac', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude Code' })
-vim.keymap.set('n', '<leader>af', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude Code' })
-vim.keymap.set('n', '<leader>ar', '<cmd>ClaudeCode resume<cr>', { desc = 'Resume Claude session' })
-vim.keymap.set('n', '<leader>aC', '<cmd>ClaudeCode continue<cr>', { desc = 'Continue Claude session' })
-vim.keymap.set('n', '<leader>am', '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'Select Claude model' })
-vim.keymap.set('n', '<leader>ab', '<cmd>ClaudeCodeAdd %<cr>', { desc = 'Add current buffer to Claude' })
-vim.keymap.set('v', '<leader>as', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send selection to Claude' })
-vim.keymap.set('n', '<leader>aa', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept Claude diff' })
-vim.keymap.set('n', '<leader>ad', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Reject Claude diff' })
+-- AI Assistants
+
+-- Claude Code
+vim.keymap.set('n', '<leader>act', '<cmd>ClaudeCode<cr>', { desc = 'Toggle Claude Code' })
+vim.keymap.set('n', '<leader>acf', '<cmd>ClaudeCodeFocus<cr>', { desc = 'Focus Claude Code' })
+vim.keymap.set('n', '<leader>acr', '<cmd>ClaudeCode resume<cr>', { desc = 'Resume session' })
+vim.keymap.set('n', '<leader>acc', '<cmd>ClaudeCode continue<cr>', { desc = 'Continue session' })
+vim.keymap.set('n', '<leader>acm', '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'Select model' })
+vim.keymap.set('n', '<leader>acb', '<cmd>ClaudeCodeAdd %<cr>', { desc = 'Add buffer' })
+vim.keymap.set('v', '<leader>acs', '<cmd>ClaudeCodeSend<cr>', { desc = 'Send selection' })
+vim.keymap.set('n', '<leader>aca', '<cmd>ClaudeCodeDiffAccept<cr>', { desc = 'Accept diff' })
+vim.keymap.set('n', '<leader>acd', '<cmd>ClaudeCodeDiffDeny<cr>', { desc = 'Deny diff' })
+
+-- GitHub Copilot
+vim.keymap.set({'n', 'v'}, '<leader>app', '<cmd>CopilotChat<cr>', { desc = 'Open Chat Panel' })
+vim.keymap.set({'n', 'v'}, '<leader>apc', '<cmd>CopilotChatClose<cr>', { desc = 'Close Chat' })
+vim.keymap.set('n', '<leader>apa', '<cmd>Copilot auth<cr>', { desc = 'Authenticate' })
+vim.keymap.set('n', '<leader>aps', '<cmd>Copilot status<cr>', { desc = 'Status' })
+
+vim.keymap.set('n', '<leader>ape', '<cmd>Copilot enable<cr>', { desc = 'Enable' })
+vim.keymap.set('n', '<leader>apd', '<cmd>Copilot disable<cr>', { desc = 'Disable' })
+vim.keymap.set('n', '<leader>apt', '<cmd>lua require("copilot.suggestion").toggle_auto_trigger()<cr>', { desc = 'Toggle auto-suggestions' })
+vim.keymap.set('n', '<leader>apl', '<cmd>Copilot signout<cr>', { desc = 'Sign out' })
+vim.keymap.set('n', '<leader>apv', '<cmd>Copilot version<cr>', { desc = 'Version' })
+vim.keymap.set({'n', 'v'}, '<leader>apqe', '<cmd>CopilotChatExplain<cr>', { desc = 'Explain code' })
+vim.keymap.set({'n', 'v'}, '<leader>apqf', '<cmd>CopilotChatFix<cr>', { desc = 'Fix problems' })
+vim.keymap.set({'n', 'v'}, '<leader>apqo', '<cmd>CopilotChatOptimize<cr>', { desc = 'Optimize code' })
+vim.keymap.set({'n', 'v'}, '<leader>apqd', '<cmd>CopilotChatDocs<cr>', { desc = 'Generate docs' })
+vim.keymap.set({'n', 'v'}, '<leader>apqt', '<cmd>CopilotChatTests<cr>', { desc = 'Generate tests' })
+vim.keymap.set({'n', 'v'}, '<leader>apqr', '<cmd>CopilotChatReview<cr>', { desc = 'Review code' })
+vim.keymap.set({'n', 'v'}, '<leader>apqc', '<cmd>CopilotChatCommit<cr>', { desc = 'Generate commit message' })
+
+vim.keymap.set('n', '<leader>apm', '<cmd>CopilotChatModels<cr>', { desc = 'Select model' })
+vim.keymap.set({'n', 'v'}, '<leader>apr', '<cmd>CopilotChatReset<cr>', { desc = 'Reset chat history' })
+vim.keymap.set('n', '<leader>apo', '<cmd>lua require("copilot.panel").open({ position = "right", ratio = 0.4 })<cr>', { desc = 'Open suggestions panel' })
 
 -- Telescope keybindings
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find files' })

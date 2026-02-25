@@ -164,6 +164,132 @@ require("lazy").setup({
     end,
   },
 
+  -- GitHub Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>"
+          },
+          layout = {
+            position = "right",
+            ratio = 0.4
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<C-]>",
+            accept_word = "<C-Right>",
+            accept_line = "<C-Down>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<M-\\>",
+          },
+        },
+        filetypes = {
+          yaml = false,
+          markdown = false,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+          ["*"] = true,
+        },
+        copilot_node_command = 'node',
+        server_opts_overrides = {},
+      })
+    end,
+  },
+
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = { "zbirenbaum/copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "main",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = function()
+      require("CopilotChat").setup({
+        debug = false,
+        model = 'gpt-4o',
+        auto_insert_mode = true,
+        auto_follow_cursor = true,
+        show_help = true,
+        temperature = 0.1,
+        context = 'buffers',
+        question_header = '## 🥷 User ',
+        answer_header = '## 🤖 Copilot ',
+        error_header = '## 🔥 Error ',
+        separator = '───',
+        window = {
+          layout = 'vertical',
+          width = 0.4,
+          height = 0.5,
+          relative = 'editor',
+          border = 'rounded',
+          title = ' 🤖 Copilot Chat ',
+          zindex = 10,
+        },
+        mappings = {
+          complete = {
+            detail = 'Use @<Tab> or /<Tab> for options.',
+            insert = '<Tab>',
+          },
+          close = {
+            normal = 'q',
+            insert = '<C-c>'
+          },
+          reset = {
+            normal = '<C-l>',
+            insert = '<C-l>',
+          },
+          submit_prompt = {
+            normal = '<CR>',
+            insert = '<C-s>',
+          },
+          accept_diff = {
+            normal = '<C-y>',
+            insert = '<C-y>',
+          },
+          yank_diff = {
+            normal = 'gy',
+          },
+          show_diff = {
+            normal = 'gd'
+          },
+          show_help = {
+            normal = 'gh',
+          },
+        },
+        highlight_headers = true,
+        auto_follow = true,
+      })
+    end,
+  },
+
   -- Elixir syntax highlighting (vim-elixir)
   {
     "elixir-editors/vim-elixir",
@@ -257,6 +383,7 @@ require("lazy").setup({
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         }),
         sources = cmp.config.sources({
+          { name = 'copilot' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
         }, {
@@ -418,7 +545,10 @@ require("lazy").setup({
 
       -- Register key group names
       wk.add({
-        { "<leader>a", group = "AI/Claude" },
+        { "<leader>a", group = "AI Assistants" },
+        { "<leader>ac", group = "Claude Code" },
+        { "<leader>ap", group = "GitHub Copilot" },
+        { "<leader>apq", group = "Ask Copilot" },
         { "<leader>b", group = "Buffer" },
         { "<leader>c", group = "Code/LSP" },
         { "<leader>f", group = "Find/Telescope" },
