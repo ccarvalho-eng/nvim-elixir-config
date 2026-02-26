@@ -45,7 +45,7 @@ require("plugins")
 
 -- Cycle through One Dark dark variants
 local function toggle_theme()
-  local styles = { "dark", "darker", "cool", "deep", "warm", "warmer" }
+  local styles = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
   local current = vim.g.onedark_style or "dark"
 
   -- Find current index
