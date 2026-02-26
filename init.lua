@@ -43,9 +43,9 @@ vim.opt.swapfile = false
 -- Load plugins
 require("plugins")
 
--- Cycle through One Dark styles: dark -> darker -> light -> dark
+-- Cycle through One Dark dark variants
 local function toggle_theme()
-  local styles = { "dark", "darker", "light" }
+  local styles = { "dark", "darker", "cool", "deep", "warm", "warmer" }
   local current = vim.g.onedark_style or "dark"
 
   -- Find current index
@@ -62,6 +62,7 @@ local function toggle_theme()
   vim.g.onedark_style = styles[next_index]
   require('onedark').setup({ style = styles[next_index] })
   require('onedark').load()
+  vim.notify("Theme: " .. styles[next_index], vim.log.levels.INFO)
 end
 
 -- Set initial theme to One Dark dark
