@@ -164,7 +164,6 @@ require("lazy").setup({
     end,
   },
 
-
   -- Elixir syntax highlighting (vim-elixir)
   {
     "elixir-editors/vim-elixir",
