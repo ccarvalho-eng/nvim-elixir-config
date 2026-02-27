@@ -25,12 +25,18 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      -- Set initial theme style
+      vim.g.onedark_style = "darker"
+
       require('onedark').setup({
-        style = 'warm',
+        style = 'darker',
         code_style = {
           comments = 'italic',
         },
       })
+
+      -- Apply colorscheme
+      vim.cmd("colorscheme onedark")
     end,
     keys = {
       { "<leader>ut", toggle_theme, desc = "Cycle One Dark styles" },

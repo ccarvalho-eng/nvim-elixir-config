@@ -36,10 +36,3 @@ vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' }
 -- Save and quit shortcuts
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
-
--- Shell
-vim.keymap.set('n', '<leader>sh', function()
-  local height = math.floor(vim.o.lines * 0.25)
-  vim.cmd('botright ' .. height .. 'split | terminal')
-  vim.cmd('startinsert')
-end, { desc = 'Open terminal at bottom (25%)' })
