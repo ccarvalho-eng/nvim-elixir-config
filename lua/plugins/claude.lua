@@ -6,9 +6,6 @@ return {
     opts = {
       dashboard = { enabled = false },
     },
-    keys = {
-      { "<leader>ud", "<cmd>lua Snacks.dashboard()<cr>", desc = "Open dashboard" },
-    },
   },
 
   -- Claude Code integration
