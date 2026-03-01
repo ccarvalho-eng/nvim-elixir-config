@@ -16,18 +16,85 @@ return {
         entries = {
           day = {
             format = '%Y/%m-%B/daily/%d-%A',
-            template = '# %A %B %d %Y\n',
+            template = [[# %A %B %d %Y
+
+## Morning Routine
+
+- [ ] Water
+- [ ] Exercise
+- [ ] Meditation
+- [ ] Breakfast
+- [ ] Reading
+- [ ] House chores
+
+## Inbox
+
+- [ ] Email
+- [ ] Calendar
+- [ ] Messages
+
+## Tasks
+
+- [ ]
+
+## Meetings
+
+## Notes
+
+## Achievements
+
+## Learnings
+
+## Tomorrow Tasks
+
+]],
             frequency = { day = 1 },
           },
           week = {
             format = '%Y/%m-%B/weekly/week-%W',
-            template = "# Week %W %B %Y\n",
+            template = [[# Week %W — %B %Y
+
+## Habit Tracker
+
+| Habit       | Mon | Tue | Wed | Thu | Fri | Sat | Sun | Total |
+|-------------|-----|-----|-----|-----|-----|-----|-----|-------|
+| Gym         |     |     |     |     |     |     |     |       |
+| Meditation  |     |     |     |     |     |     |     |       |
+| Reading     |     |     |     |     |     |     |     |       |
+
+## Objectives
+
+- [ ] Personal
+  - [ ]
+- [ ] Work
+  - [ ]
+
+## Achievements
+
+## Learnings
+
+## Next Week Objectives
+]],
             frequency = { day = 7 },
             date_modifier = "monday"
           },
           month = {
             format = '%Y/%m-%B/%B',
-            template = "# %B %Y\n",
+            template = [[# %B %Y
+
+## Objectives
+
+- [ ] Personal
+  - [ ]
+- [ ] Work
+  - [ ]
+
+## Achievements
+
+## Learnings
+
+## Next Month Objectives
+]],
             frequency = { month = 1 }
           },
           quarter = {
@@ -41,13 +108,41 @@ return {
               local year = os.date("%Y", date)
               local month = tonumber(os.date("%m", date))
               local quarter = math.ceil(month / 3)
-              return string.format("# Q%d %s\n", quarter, year)
+              return string.format([[# Q%d %s
+
+## OKR's
+
+- [ ] Personal
+  - [ ]
+- [ ] Work
+  - [ ]
+
+## Achievements
+
+## Learnings
+
+## Next Quarter Focus
+]], quarter, year)
             end,
             frequency = { month = 3 },
           },
           year = {
             format = '%Y/%Y',
-            template = "# %Y\n",
+            template = [[# %Y
+
+## Objectives
+
+- [ ] Personal
+  - [ ]
+- [ ] Work
+  - [ ]
+
+## Achievements
+
+## Learnings
+
+## Next Year Objectives
+]],
             frequency = { year = 1 }
           },
         },
@@ -57,7 +152,6 @@ return {
     config = function(_, opts)
       require("journal").setup(opts)
 
-      -- Set up keybindings
       local wk = require("which-key")
       wk.add({
         { "<leader>j", group = "Journal" },
