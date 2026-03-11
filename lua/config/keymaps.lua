@@ -31,7 +31,7 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking' })
 -- Buffer navigation
 vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bp|bd #<cr>', { desc = 'Delete buffer' })
 
 -- Save and quit shortcuts
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
