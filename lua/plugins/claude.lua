@@ -26,7 +26,7 @@ return {
         },
         diff = {
           auto_close_on_accept = true,
-          vertical_split = true,
+          vertical_split = false,
         },
       })
     end,
