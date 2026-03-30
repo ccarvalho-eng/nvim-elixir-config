@@ -24,9 +24,16 @@ return {
           track_selection = true,
           focus_after_send = true,
         },
-        diff = {
-          auto_close_on_accept = true,
-          vertical_split = false,
+        diff_opts = {
+          layout = "horizontal", -- "vertical" or "horizontal"
+          open_in_new_tab = false,
+          keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens
+          hide_terminal_in_new_tab = false,
+          -- on_new_file_reject = "keep_empty", -- "keep_empty" or "close_window"
+
+          -- Legacy aliases (still supported):
+          -- vertical_split = true,
+          -- open_in_current_tab = true,
         },
       })
     end,
