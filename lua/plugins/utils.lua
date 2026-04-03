@@ -17,7 +17,7 @@ return {
 
       -- Register key group names
       wk.add({
-        { "<leader>a", group = "AI/Claude" },
+        { "<leader>a", group = "AI/Codex" },
         { "<leader>b", group = "Buffer" },
         { "<leader>c", group = "Code/LSP" },
         { "<leader>f", group = "Find/Telescope" },

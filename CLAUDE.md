@@ -1,10 +1,10 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance for AI coding assistants working with this repository.
 
 ## Project Overview
 
-Personal Neovim configuration optimized for Elixir development with integrated Claude Code support. Built on lazy.nvim plugin manager with modular plugin architecture.
+Personal Neovim configuration optimized for Elixir development with integrated Codex support. Built on lazy.nvim plugin manager with modular plugin architecture.
 
 ## Architecture
 
@@ -18,7 +18,7 @@ Personal Neovim configuration optimized for Elixir development with integrated C
 **Key Plugin Categories:**
 - `lsp.lua` - ElixirLS via elixir-tools.nvim, Mason for language server management, LSP keybindings via LspAttach autocmd
 - `test.lua` - vim-test integration with custom test/module file toggling (`<leader>ta`)
-- `claude.lua` - Claude Code integration with Snacks terminal provider
+- `codex.lua` - Codex integration and shared Snacks configuration
 - `telescope.lua` - Fuzzy finding with project management (base: `~/Projects`)
 
 ## ElixirLS Integration
@@ -38,7 +38,7 @@ Uses elixir-tools.nvim wrapper pointing to Mason-installed ElixirLS at `~/.local
 - `<Space>` - Leader key
 - `<leader>t*` - Test commands (tn=nearest, tf=file, ts=suite, ta=toggle)
 - `<leader>f*` - Telescope find (ff=files, fg=grep, fb=buffers, fp=projects)
-- `<leader>a*` - Claude Code actions
+- `<leader>a*` - Codex actions
 - LSP: `gd` (definition), `K` (hover), `gr` (references), `<leader>ca` (code action), `<leader>cf` (format)
 
 ## Development Commands
