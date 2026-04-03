@@ -7,7 +7,7 @@ return {
     "folke/snacks.nvim", -- Already loaded, just adding keybinding
     keys = {
       {
-        "<leader>sh",
+        "<leader>st",
         function()
           local height = math.floor(vim.o.lines * 0.25)
           vim.cmd('botright ' .. height .. 'split | terminal')

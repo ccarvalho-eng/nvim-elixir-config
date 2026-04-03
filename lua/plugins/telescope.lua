@@ -51,4 +51,41 @@ return {
     "nvim-telescope/telescope-project.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
   },
+
+  -- Search and replace
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar", "GrugFarWithin" },
+    config = function()
+      require("grug-far").setup({})
+    end,
+    keys = {
+      {
+        "<leader>sr",
+        function()
+          require("grug-far").open()
+        end,
+        desc = "Search and replace in project",
+      },
+      {
+        "<leader>sf",
+        function()
+          require("grug-far").open({
+            prefills = {
+              paths = vim.fn.expand("%"),
+            },
+          })
+        end,
+        desc = "Search and replace in file",
+      },
+      {
+        "<leader>si",
+        function()
+          require("grug-far").open({ visualSelectionUsage = "auto-detect" })
+        end,
+        mode = { "n", "x" },
+        desc = "Search and replace in selection",
+      },
+    },
+  },
 }
