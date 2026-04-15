@@ -3,4 +3,5 @@
 -- Load core configuration
 require("config.options")
 require("config.lazy")
+require("config.worktree").setup()
 require("config.keymaps")

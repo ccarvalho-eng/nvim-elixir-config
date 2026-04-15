@@ -36,3 +36,20 @@ vim.keymap.set('n', '<leader>bd', '<cmd>bp|bd #<cr>', { desc = 'Delete buffer' }
 -- Save and quit shortcuts
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
+
+-- Git worktree navigation
+vim.keymap.set('n', '<leader>gw', function()
+  require('config.worktree').switch()
+end, { desc = 'Switch worktree in tab' })
+
+vim.keymap.set('n', '<leader>gW', function()
+  require('config.worktree').tab()
+end, { desc = 'Open worktree in new tab' })
+
+vim.keymap.set('n', '<leader>gl', function()
+  require('config.worktree').last()
+end, { desc = 'Switch to last worktree' })
+
+vim.keymap.set('n', '<leader>gL', function()
+  require('config.worktree').last_tab()
+end, { desc = 'Open last worktree in new tab' })
