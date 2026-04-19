@@ -17,7 +17,8 @@ return {
         extensions = {
           project = {
             base_dirs = {
-              '~/Projects',
+              { '~/Projects', max_depth = 2 },
+              { '~/Projects/.worktrees', max_depth = 2 },
             },
             hidden_files = false,
             order_by = "recent",
