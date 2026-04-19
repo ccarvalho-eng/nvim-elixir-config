@@ -116,6 +116,16 @@ if vim.fn.executable("dexter") == 1 then
   vim.lsp.enable("dexter")
 end
 
+if vim.fn.executable("gleam") == 1 then
+  vim.lsp.config("gleam", {
+    cmd = { "gleam", "lsp" },
+    root_markers = { "gleam.toml", ".git" },
+    filetypes = { "gleam" },
+  })
+
+  vim.lsp.enable("gleam")
+end
+
 return {
   -- Elixir syntax highlighting (vim-elixir)
   {
