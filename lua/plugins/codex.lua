@@ -19,6 +19,9 @@ return {
       env = {
         ENABLE_IDE_INTEGRATION = "true",
       },
+      status_indicator = {
+        enabled = false,
+      },
       terminal = {
         provider = "snacks",
         split_side = "right",
@@ -32,14 +35,33 @@ return {
       {
         "<leader>ac",
         function()
-          vim.cmd("Codex")
+          require("codex").toggle()
         end,
         desc = "Toggle Codex",
         mode = { "n", "t" },
       },
-      { "<leader>ao", "<cmd>Codex<cr>", desc = "Open Codex" },
-      { "<leader>aq", "<cmd>CodexFocus<cr>", desc = "Focus Codex" },
-      { "<leader>as", "<cmd>CodexSend<cr>", desc = "Send selection to Codex", mode = "v" },
+      {
+        "<leader>ao",
+        function()
+          require("codex.terminal").open()
+        end,
+        desc = "Open Codex",
+      },
+      {
+        "<leader>aq",
+        function()
+          require("codex.terminal").focus_toggle()
+        end,
+        desc = "Focus Codex",
+      },
+      {
+        "<leader>as",
+        function()
+          require("codex").actions.send_selection()
+        end,
+        desc = "Send selection to Codex",
+        mode = "v",
+      },
     },
   },
 }
