@@ -1,45 +1,53 @@
--- Cycle through One Dark dark variants
+-- Cycle through Catppuccin flavours
 local function toggle_theme()
-  local styles = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
-  local current = vim.g.onedark_style or "dark"
+  local flavours = { "latte", "frappe", "macchiato", "mocha" }
+  local current = vim.g.catppuccin_flavour or "frappe"
 
   local current_index = 1
-  for i, style in ipairs(styles) do
-    if style == current then
+  for i, flavour in ipairs(flavours) do
+    if flavour == current then
       current_index = i
       break
     end
   end
 
-  local next_index = (current_index % #styles) + 1
-  vim.g.onedark_style = styles[next_index]
-  require('onedark').setup({ style = styles[next_index] })
-  require('onedark').load()
-  vim.notify("Theme: " .. styles[next_index], vim.log.levels.INFO)
+  local next_index = (current_index % #flavours) + 1
+  local next_flavour = flavours[next_index]
+
+  vim.g.catppuccin_flavour = next_flavour
+  require("catppuccin").setup({
+    flavour = next_flavour,
+    integrations = {
+      notify = true,
+      treesitter = true,
+    },
+  })
+  vim.cmd.colorscheme("catppuccin")
+  vim.notify("Theme: " .. next_flavour, vim.log.levels.INFO)
 end
 
 return {
-  -- One Dark theme
+  -- Catppuccin theme
   {
-    "navarasu/onedark.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     config = function()
-      -- Set initial theme style
-      vim.g.onedark_style = "cool"
+      vim.g.catppuccin_flavour = "frappe"
 
-      require('onedark').setup({
-        style = 'cool',
-        code_style = {
-          comments = 'italic',
+      require("catppuccin").setup({
+        flavour = vim.g.catppuccin_flavour,
+        integrations = {
+          notify = true,
+          treesitter = true,
         },
       })
 
-      -- Apply colorscheme
-      vim.cmd("colorscheme onedark")
+      vim.cmd("colorscheme catppuccin")
     end,
     keys = {
-      { "<leader>ut", toggle_theme, desc = "Cycle One Dark styles" },
+      { "<leader>ut", toggle_theme, desc = "Cycle Catppuccin flavours" },
     },
   },
 
