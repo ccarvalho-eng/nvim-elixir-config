@@ -14,28 +14,7 @@ return {
             },
           },
         },
-        extensions = {
-          project = {
-            base_dirs = {
-              { '~/Projects', max_depth = 2 },
-              { '~/Projects/.worktrees', max_depth = 2 },
-            },
-            hidden_files = false,
-            order_by = "recent",
-            search_by = "title",
-            on_project_selected = function(prompt_bufnr)
-              local project_actions = require("telescope._extensions.project.actions")
-              project_actions.change_working_directory(prompt_bufnr, false)
-
-              -- Update nvim-tree to the new project directory
-              require("nvim-tree.api").tree.change_root(vim.fn.getcwd())
-            end,
-          },
-        },
       })
-
-      -- Load telescope-project extension
-      require('telescope').load_extension('project')
     end,
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
@@ -43,14 +22,7 @@ return {
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
-      { "<leader>fp", "<cmd>Telescope project<cr>", desc = "Find projects" },
     },
-  },
-
-  -- Telescope project management
-  {
-    "nvim-telescope/telescope-project.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
   },
 
   -- Search and replace

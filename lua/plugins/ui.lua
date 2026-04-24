@@ -26,10 +26,10 @@ return {
     priority = 1000,
     config = function()
       -- Set initial theme style
-      vim.g.onedark_style = "deep"
+      vim.g.onedark_style = "cool"
 
       require('onedark').setup({
-        style = 'darker',
+        style = 'cool',
         code_style = {
           comments = 'italic',
         },
