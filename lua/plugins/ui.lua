@@ -1,54 +1,14 @@
--- Cycle through Catppuccin flavours
-local function toggle_theme()
-  local flavours = { "latte", "frappe", "macchiato", "mocha" }
-  local current = vim.g.catppuccin_flavour or "frappe"
-
-  local current_index = 1
-  for i, flavour in ipairs(flavours) do
-    if flavour == current then
-      current_index = i
-      break
-    end
-  end
-
-  local next_index = (current_index % #flavours) + 1
-  local next_flavour = flavours[next_index]
-
-  vim.g.catppuccin_flavour = next_flavour
-  require("catppuccin").setup({
-    flavour = next_flavour,
-    integrations = {
-      notify = true,
-      treesitter = true,
-    },
-  })
-  vim.cmd.colorscheme("catppuccin")
-  vim.notify("Theme: " .. next_flavour, vim.log.levels.INFO)
-end
-
 return {
-  -- Catppuccin theme
+  -- Dracula theme
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "Mofiqul/dracula.nvim",
+    name = "dracula",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.catppuccin_flavour = "frappe"
-
-      require("catppuccin").setup({
-        flavour = vim.g.catppuccin_flavour,
-        integrations = {
-          notify = true,
-          treesitter = true,
-        },
-      })
-
-      vim.cmd("colorscheme catppuccin")
+      vim.o.background = "dark"
+      vim.cmd("colorscheme dracula")
     end,
-    keys = {
-      { "<leader>ut", toggle_theme, desc = "Cycle Catppuccin flavours" },
-    },
   },
 
   -- Lualine status line
