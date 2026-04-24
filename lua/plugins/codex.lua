@@ -21,9 +21,8 @@ return {
       },
       terminal = {
         provider = "snacks",
-        direction = "vertical",
-        position = "right",
-        size = 0.35,
+        split_side = "right",
+        split_width_percentage = 0.35,
       },
     },
     config = function(_, opts)
