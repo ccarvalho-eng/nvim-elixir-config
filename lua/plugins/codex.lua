@@ -8,29 +8,39 @@ return {
   },
 
   {
-    "johnseth97/codex.nvim",
-    cmd = { "Codex", "CodexToggle" },
-    opts = {
-      keymaps = {
-        toggle = nil,
-        quit = "<C-q>",
-      },
-      border = "rounded",
-      width = 0.35,
-      panel = true,
-      autoinstall = false,
+    "ishiooon/codex.nvim",
+    cmd = {
+      "Codex",
+      "CodexFocus",
+      "CodexSend",
+      "CodexTreeAdd",
     },
+    opts = {
+      env = {
+        ENABLE_IDE_INTEGRATION = "true",
+      },
+      terminal = {
+        provider = "snacks",
+        direction = "vertical",
+        position = "right",
+        size = 0.35,
+      },
+    },
+    config = function(_, opts)
+      require("codex").setup(opts)
+    end,
     keys = {
       {
         "<leader>ac",
         function()
-          require("codex").toggle()
+          vim.cmd("Codex")
         end,
         desc = "Toggle Codex",
         mode = { "n", "t" },
       },
       { "<leader>ao", "<cmd>Codex<cr>", desc = "Open Codex" },
-      { "<leader>aq", "<cmd>CodexToggle<cr>", desc = "Toggle Codex" },
+      { "<leader>aq", "<cmd>CodexFocus<cr>", desc = "Focus Codex" },
+      { "<leader>as", "<cmd>CodexSend<cr>", desc = "Send selection to Codex", mode = "v" },
     },
   },
 }
