@@ -6,6 +6,10 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      require("dracula").setup({
+        italic_comment = true,
+      })
+
       vim.o.background = "dark"
       vim.cmd("colorscheme dracula")
     end,
@@ -18,7 +22,7 @@ return {
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'auto',
+          theme = 'dracula-nvim',
           component_separators = { left = '|', right = '|'},
           section_separators = { left = '', right = ''},
         },
