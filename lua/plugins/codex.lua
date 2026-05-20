@@ -39,7 +39,14 @@ return {
     end,
     keys = {
       {
-        "<leader>ac",
+        "<leader>aC",
+        function()
+          require("codex").toggle()
+        end,
+        desc = "Toggle Codex",
+      },
+      {
+        "<F9>",
         function()
           require("codex").toggle()
         end,
