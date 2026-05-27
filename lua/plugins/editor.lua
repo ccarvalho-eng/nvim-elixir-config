@@ -25,6 +25,18 @@ return {
     end,
   },
 
+  -- CSV/TSV tabular view
+  {
+    "hat0uma/csvview.nvim",
+    ft = { "csv", "tsv" },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle", "CsvViewInfo" },
+    opts = {
+      parser = {
+        comments = { "#", "//" },
+      },
+    },
+  },
+
   -- Surround text objects (cs"' to change " to ')
   {
     "kylechui/nvim-surround",
