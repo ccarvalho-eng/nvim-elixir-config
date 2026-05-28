@@ -1,0 +1,55 @@
+<h2>First 3D experience</h2>
+<p class="subtitle">Both can exist later, but the MVP should make one feel good first.</p>
+
+<div class="cards">
+  <div class="card" data-choice="first-person" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="height:210px;background:linear-gradient(#eef2f7 0 48%,#d9e4ef 48% 100%);position:relative;overflow:hidden;border:1px solid #cfd6df">
+        <div style="position:absolute;left:22px;top:22px;width:66px;height:126px;background:#f8fafc;border-right:5px solid #64748b;transform:skewY(14deg)"></div>
+        <div style="position:absolute;right:18px;top:28px;width:78px;height:128px;background:#f8fafc;border-left:5px solid #64748b;transform:skewY(-12deg)"></div>
+        <div style="position:absolute;left:96px;top:42px;width:88px;height:86px;background:#ffffff;border:5px solid #475569"></div>
+        <div style="position:absolute;left:123px;top:82px;width:30px;height:46px;background:#94a3b8"></div>
+        <div style="position:absolute;left:94px;right:94px;bottom:0;height:95px;background:#cbd5e1;clip-path:polygon(28% 0,72% 0,100% 100%,0 100%)"></div>
+        <div style="position:absolute;left:50%;bottom:18px;transform:translateX(-50%);padding:6px 10px;border-radius:999px;background:#0f172a;color:white;font-size:12px">WASD POV</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>First-person walkthrough</h3>
+      <p>Feels closest to standing inside the house. Best for your “mostly to have a POV” goal.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="orbit-dollhouse" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="height:210px;background:#f8fafc;position:relative;overflow:hidden;border:1px solid #cfd6df">
+        <div style="position:absolute;left:54px;top:72px;width:180px;height:92px;background:#dbeafe;border:4px solid #2563eb;transform:skewY(-18deg)"></div>
+        <div style="position:absolute;left:54px;top:38px;width:180px;height:74px;background:#eff6ff;border:4px solid #2563eb;transform:skewY(-18deg)"></div>
+        <div style="position:absolute;left:112px;top:48px;width:4px;height:116px;background:#2563eb;transform:skewY(-18deg)"></div>
+        <div style="position:absolute;left:170px;top:40px;width:4px;height:116px;background:#2563eb;transform:skewY(-18deg)"></div>
+        <div style="position:absolute;right:28px;top:24px;width:52px;height:52px;border:2px dashed #64748b;border-radius:50%"></div>
+        <div style="position:absolute;right:38px;top:40px;font-size:12px;color:#334155">orbit</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Orbit/dollhouse view</h3>
+      <p>Best for understanding room layout from above. Easier controls, less immersive.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons">
+  <div class="pros">
+    <h4>My recommendation</h4>
+    <ul>
+      <li>Start with first-person walkthrough plus a small top-down minimap.</li>
+      <li>Add orbit view as a secondary toggle once the core model generation works.</li>
+    </ul>
+  </div>
+  <div class="cons">
+    <h4>Keep out of MVP</h4>
+    <ul>
+      <li>Photoreal rendering, furniture libraries, lighting simulation, and CAD export.</li>
+      <li>Multiple floors until one-floor plans feel solid.</li>
+    </ul>
+  </div>
+</div>
