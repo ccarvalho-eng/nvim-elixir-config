@@ -1,0 +1,9 @@
+# Lazy.nvim plugin directory
+lazy-lock.json
+
+# Test files
+test.ex
+*.md.tmp
+
+# Dexter index database
+.dexter.db*
