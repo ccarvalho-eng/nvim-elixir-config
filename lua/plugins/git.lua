@@ -55,6 +55,20 @@ return {
     },
     keys = {
       { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open diff view" },
+      {
+        "<leader>gm",
+        function()
+          local branch = vim.fn.systemlist({ "git", "branch", "--show-current" })[1]
+
+          if vim.v.shell_error ~= 0 or branch == nil or branch == "" then
+            vim.notify("Unable to resolve current git branch", vim.log.levels.WARN)
+            return
+          end
+
+          vim.cmd("DiffviewOpen " .. vim.fn.fnameescape("origin/main..." .. branch))
+        end,
+        desc = "Diff current branch against main",
+      },
       { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close diff view" },
       { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
       { "<leader>gF", "<cmd>DiffviewFileHistory<cr>", desc = "Repository history" },
