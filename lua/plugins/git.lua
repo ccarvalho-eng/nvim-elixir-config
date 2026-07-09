@@ -39,6 +39,28 @@ return {
     },
   },
 
+  -- Git diff/file history viewer
+  {
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewFileHistory",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open diff view" },
+      { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close diff view" },
+      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+      { "<leader>gF", "<cmd>DiffviewFileHistory<cr>", desc = "Repository history" },
+    },
+  },
+
   -- Open file/line on GitHub
   {
     "ruifm/gitlinker.nvim",
