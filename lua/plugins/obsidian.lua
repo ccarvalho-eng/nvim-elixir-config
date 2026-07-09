@@ -68,8 +68,15 @@ return {
 			require("obsidian").setup({
 				legacy_commands = false,
 				note_id_func = note_id,
+				daily_notes = {
+					folder = "journal",
+					template = "journal",
+				},
 				picker = {
 					name = "telescope.nvim",
+				},
+				templates = {
+					folder = "codex",
 				},
 				workspaces = {
 					{
