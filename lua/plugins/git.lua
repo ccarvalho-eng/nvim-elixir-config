@@ -94,4 +94,29 @@ return {
       { "<leader>gy", "<cmd>lua require('gitlinker').get_buf_range_url('v')<cr>", mode = "v", desc = "Copy GitHub link (selection)" },
     },
   },
+
+  -- GitHub issues and pull requests inside Neovim
+  {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      picker = "telescope",
+      enable_builtin = true,
+    },
+    keys = {
+      { "<leader>ha", "<cmd>Octo search is:pr is:open assignee:@me<cr>", desc = "GitHub PRs assigned to me" },
+      { "<leader>hi", "<cmd>Octo issue list<cr>", desc = "List GitHub issues" },
+      { "<leader>hm", "<cmd>Octo search is:pr is:open author:@me<cr>", desc = "My open GitHub PRs" },
+      { "<leader>hp", "<cmd>Octo pr list<cr>", desc = "List GitHub pull requests" },
+      { "<leader>hn", "<cmd>Octo notification list<cr>", desc = "List GitHub notifications" },
+      { "<leader>hr", "<cmd>Octo search is:pr is:open review-requested:@me<cr>", desc = "GitHub PRs awaiting my review" },
+      { "<leader>hs", "<cmd>Octo search<cr>", desc = "Search GitHub" },
+      { "<leader>hv", "<cmd>Octo review<cr>", desc = "Review current GitHub PR" },
+    },
+  },
 }
