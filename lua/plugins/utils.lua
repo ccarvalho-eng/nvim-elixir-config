@@ -22,6 +22,7 @@ return {
         { "<leader>c", group = "Code/LSP" },
         { "<leader>f", group = "Find/Telescope" },
         { "<leader>g", group = "Git" },
+        { "<leader>h", group = "GitHub" },
         { "<leader>o", group = "Obsidian" },
         { "<leader>s", group = "Search/Shell" },
         { "<leader>t", group = "Test" },
