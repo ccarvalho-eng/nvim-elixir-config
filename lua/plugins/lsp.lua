@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_win_set_cursor(0, {cursor[1], #new_line - 1})
     end, vim.tbl_extend('force', opts, { desc = 'Append |> dbg()' }))
 
-    if client and client.name == "dexter" and client.supports_method("textDocument/formatting") then
+    if client and client.name == "dexter" and client:supports_method("textDocument/formatting", ev.buf) then
       local group = vim.api.nvim_create_augroup("DexterFormatOnSave", { clear = false })
       vim.api.nvim_clear_autocmds({ group = group, buffer = ev.buf })
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 if vim.fn.executable("dexter") == 1 then
   vim.lsp.config("dexter", {
     cmd = { "dexter", "lsp" },
-    root_markers = { ".dexter.db", ".git", "mix.exs" },
+    root_markers = { ".dexter/dexter.db", ".dexter.db", ".git", "mix.exs" },
     filetypes = { "elixir", "eelixir", "heex" },
     init_options = {
       followDelegates = true,
