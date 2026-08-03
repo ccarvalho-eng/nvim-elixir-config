@@ -76,7 +76,7 @@ return {
 					name = "telescope.nvim",
 				},
 				templates = {
-					folder = "codex",
+					folder = "blueprints",
 				},
 				workspaces = {
 					{
