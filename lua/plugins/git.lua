@@ -117,6 +117,20 @@ return {
       { "<leader>hr", "<cmd>Octo search is:pr is:open review-requested:@me<cr>", desc = "GitHub PRs awaiting my review" },
       { "<leader>hs", "<cmd>Octo search<cr>", desc = "Search GitHub" },
       { "<leader>hv", "<cmd>Octo review<cr>", desc = "Review current GitHub PR" },
+      {
+        "<leader>h?",
+        function()
+          require("config.octo_help").open()
+        end,
+        desc = "Octo key reference",
+      },
+      {
+        "<leader>hk",
+        function()
+          require("which-key").show({ keys = vim.g.maplocalleader, loop = true })
+        end,
+        desc = "Octo keys in this buffer",
+      },
     },
   },
 }
