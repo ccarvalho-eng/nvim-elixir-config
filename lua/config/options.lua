@@ -1,6 +1,8 @@
 -- Leader key (must be set before plugins load)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Distinct from mapleader so plugin <localleader> mappings (octo.nvim binds ~60
+-- of them) get their own namespace instead of shadowing the <leader> mappings.
+vim.g.maplocalleader = ","
 
 -- Display settings
 vim.opt.number = true

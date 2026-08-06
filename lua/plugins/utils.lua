@@ -12,7 +12,11 @@ return {
       local wk = require("which-key")
       wk.setup({
         preset = "modern",
-        delay = 300,
+        -- No wait on the localleader: plugin buffers (octo) are the only thing
+        -- bound there, so show the menu the moment it is pressed.
+        delay = function(ctx)
+          return ctx.keys == vim.g.maplocalleader and 0 or 300
+        end,
       })
 
       -- Register key group names
