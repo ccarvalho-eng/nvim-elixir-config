@@ -1,7 +1,11 @@
--- Cycle through One Dark dark variants
+-- Style loaded at startup. toggle_theme tracks the live style in
+-- vim.g.onedark_style, so both must start from the same value.
+local default_style = "darker"
+
+-- Cycle through One Dark variants
 local function toggle_theme()
   local styles = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
-  local current = vim.g.onedark_style or "dark"
+  local current = vim.g.onedark_style or default_style
 
   local current_index = 1
   for i, style in ipairs(styles) do
@@ -25,10 +29,10 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.onedark_style = "warmer"
+      vim.g.onedark_style = default_style
 
       require('onedark').setup({
-        style = 'cool',
+        style = default_style,
         code_style = {
           comments = 'italic',
         },

@@ -14,16 +14,6 @@ local function systemlist(cmd)
   return output
 end
 
-local function git_common_dir()
-  local output = systemlist({ "git", "-C", vim.fn.getcwd(), "rev-parse", "--git-common-dir" })
-
-  if not output or not output[1] or output[1] == "" then
-    return nil
-  end
-
-  return vim.fs.normalize(vim.fn.fnamemodify(output[1], ":p"))
-end
-
 local function list_worktrees()
   local output = systemlist({ "git", "-C", vim.fn.getcwd(), "worktree", "list", "--porcelain" })
 
@@ -85,29 +75,6 @@ local function switch_to_worktree(path, opts)
   end
 
   notify("Switched tab to " .. path)
-end
-
-local function read_last_worktree()
-  local common_dir = git_common_dir()
-
-  if not common_dir then
-    return nil
-  end
-
-  local marker = vim.fs.joinpath(common_dir, "codex-last-worktree")
-
-  if vim.fn.filereadable(marker) == 0 then
-    return nil
-  end
-
-  local lines = vim.fn.readfile(marker)
-  local path = lines[1]
-
-  if not path or path == "" then
-    return nil
-  end
-
-  return vim.fs.normalize(path)
 end
 
 local function telescope_select(worktrees, opts)
@@ -193,28 +160,6 @@ function M.tab()
   select_worktree({ new_tab = true })
 end
 
-function M.last()
-  local path = read_last_worktree()
-
-  if path then
-    switch_to_worktree(path, { new_tab = false })
-    return
-  end
-
-  select_worktree({ new_tab = false })
-end
-
-function M.last_tab()
-  local path = read_last_worktree()
-
-  if path then
-    switch_to_worktree(path, { new_tab = true })
-    return
-  end
-
-  select_worktree({ new_tab = true })
-end
-
 function M.setup()
   vim.api.nvim_create_user_command("WorktreeSwitch", function()
     M.switch()
@@ -223,14 +168,6 @@ function M.setup()
   vim.api.nvim_create_user_command("WorktreeTab", function()
     M.tab()
   end, { desc = "Open a git worktree in a new tab" })
-
-  vim.api.nvim_create_user_command("WorktreeLast", function()
-    M.last()
-  end, { desc = "Switch this tab to the last recorded git worktree" })
-
-  vim.api.nvim_create_user_command("WorktreeLastTab", function()
-    M.last_tab()
-  end, { desc = "Open the last recorded git worktree in a new tab" })
 end
 
 return M

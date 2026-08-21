@@ -58,11 +58,3 @@ end, { desc = 'Switch worktree in tab' })
 vim.keymap.set('n', '<leader>gW', function()
   require('config.worktree').tab()
 end, { desc = 'Open worktree in new tab' })
-
-vim.keymap.set('n', '<leader>gl', function()
-  require('config.worktree').last()
-end, { desc = 'Switch to last worktree' })
-
-vim.keymap.set('n', '<leader>gL', function()
-  require('config.worktree').last_tab()
-end, { desc = 'Open last worktree in new tab' })
