@@ -58,16 +58,44 @@ return {
       {
         "<leader>gm",
         function()
-          local branch = vim.fn.systemlist({ "git", "branch", "--show-current" })[1]
+          local function git(...)
+            local output = vim.fn.systemlist({ "git", ... })
 
-          if vim.v.shell_error ~= 0 or branch == nil or branch == "" then
+            if vim.v.shell_error ~= 0 then
+              return nil
+            end
+
+            return output[1]
+          end
+
+          local branch = git("branch", "--show-current")
+
+          if branch == nil or branch == "" then
             vim.notify("Unable to resolve current git branch", vim.log.levels.WARN)
             return
           end
 
-          vim.cmd("DiffviewOpen " .. vim.fn.fnameescape("origin/main..." .. branch))
+          -- Ask the remote what its default branch is before falling back to the
+          -- conventional names, so repositories on master/develop still diff.
+          local default = git("symbolic-ref", "--short", "refs/remotes/origin/HEAD")
+
+          if default == nil or default == "" then
+            for _, candidate in ipairs({ "origin/main", "origin/master" }) do
+              if git("rev-parse", "--verify", "--quiet", candidate) then
+                default = candidate
+                break
+              end
+            end
+          end
+
+          if default == nil or default == "" then
+            vim.notify("Unable to resolve the default branch for origin", vim.log.levels.WARN)
+            return
+          end
+
+          vim.cmd("DiffviewOpen " .. vim.fn.fnameescape(default .. "..." .. branch))
         end,
-        desc = "Diff current branch against main",
+        desc = "Diff current branch against the default branch",
       },
       { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close diff view" },
       { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
