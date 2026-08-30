@@ -100,8 +100,8 @@ return {
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
       { "<leader>fp", "<cmd>Telescope project<cr>", desc = "Find projects" },
     },
@@ -120,7 +120,7 @@ return {
         function()
           require("grug-far").open()
         end,
-        desc = "Search and replace in project",
+        desc = "Replace in project",
       },
       {
         "<leader>sf",
@@ -131,7 +131,7 @@ return {
             },
           })
         end,
-        desc = "Search and replace in file",
+        desc = "Replace in file",
       },
       {
         "<leader>si",
@@ -139,7 +139,7 @@ return {
           require("grug-far").open({ visualSelectionUsage = "auto-detect" })
         end,
         mode = { "n", "x" },
-        desc = "Search and replace in selection",
+        desc = "Replace in selection",
       },
     },
   },

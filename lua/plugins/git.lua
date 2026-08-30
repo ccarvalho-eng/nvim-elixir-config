@@ -15,9 +15,9 @@ return {
       })
     end,
     keys = {
-      { "<leader>gb", "<cmd>Gitsigns blame_line<cr>", desc = "Git blame line" },
-      { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },
-      { "<leader>gh", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset hunk" },
+      { "<leader>ghb", "<cmd>Gitsigns blame_line<cr>", desc = "Blame line" },
+      { "<leader>ghp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },
+      { "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset hunk" },
     },
   },
 
@@ -54,9 +54,9 @@ return {
       "nvim-lua/plenary.nvim",
     },
     keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open diff view" },
+      { "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "Open diff view" },
       {
-        "<leader>gm",
+        "<leader>gdm",
         function()
           local function git(...)
             local output = vim.fn.systemlist({ "git", ... })
@@ -97,18 +97,26 @@ return {
         end,
         desc = "Diff current branch against the default branch",
       },
-      { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close diff view" },
-      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
-      { "<leader>gF", "<cmd>DiffviewFileHistory<cr>", desc = "Repository history" },
+      { "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "Close diff view" },
+      { "<leader>gdf", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+      { "<leader>gdr", "<cmd>DiffviewFileHistory<cr>", desc = "Repository history" },
     },
   },
 
-  -- Copy a permalink for the current file or selection
+  -- Open or copy a permalink for the current file or selection
   {
     "folke/snacks.nvim",
     keys = {
       {
-        "<leader>gy",
+        "<leader>glo",
+        function()
+          Snacks.gitbrowse({ what = "permalink" })
+        end,
+        mode = { "n", "v" },
+        desc = "Open Git permalink",
+      },
+      {
+        "<leader>gly",
         function()
           Snacks.gitbrowse({
             what = "permalink",

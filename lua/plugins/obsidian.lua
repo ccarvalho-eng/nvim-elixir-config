@@ -49,13 +49,13 @@ return {
 		ft = "markdown",
 		cmd = "Obsidian",
 		keys = {
-			{ "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Obsidian backlinks" },
-			{ "<leader>od", "<cmd>Obsidian dailies<cr>", desc = "Obsidian dailies" },
-			{ "<leader>on", "<cmd>Obsidian new<cr>", desc = "New Obsidian note" },
+			{ "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
+			{ "<leader>od", "<cmd>Obsidian dailies<cr>", desc = "Daily notes" },
+			{ "<leader>on", "<cmd>Obsidian new<cr>", desc = "New note" },
 			{ "<leader>oo", "<cmd>Obsidian open<cr>", desc = "Open in Obsidian" },
-			{ "<leader>oq", "<cmd>Obsidian quick_switch<cr>", desc = "Find Obsidian note" },
-			{ "<leader>os", "<cmd>Obsidian search<cr>", desc = "Search Obsidian notes" },
-			{ "<leader>ot", "<cmd>Obsidian today<cr>", desc = "Today Obsidian note" },
+			{ "<leader>oq", "<cmd>Obsidian quick_switch<cr>", desc = "Find note" },
+			{ "<leader>os", "<cmd>Obsidian search<cr>", desc = "Search notes" },
+			{ "<leader>ot", "<cmd>Obsidian today<cr>", desc = "Today's note" },
 		},
 		config = function()
 			local path = vault_path()

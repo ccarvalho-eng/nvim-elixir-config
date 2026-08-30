@@ -5,7 +5,7 @@ return {
     "folke/snacks.nvim",
     keys = {
       {
-        "<leader>st",
+        "<leader>us",
         function()
           Snacks.terminal(nil, {
             win = {

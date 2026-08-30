@@ -51,10 +51,10 @@ vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
 
 -- Git worktree navigation
-vim.keymap.set('n', '<leader>gw', function()
+vim.keymap.set('n', '<leader>gww', function()
   require('config.worktree').switch()
 end, { desc = 'Switch worktree in tab' })
 
-vim.keymap.set('n', '<leader>gW', function()
+vim.keymap.set('n', '<leader>gwt', function()
   require('config.worktree').tab()
 end, { desc = 'Open worktree in new tab' })

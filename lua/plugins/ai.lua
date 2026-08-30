@@ -56,7 +56,7 @@ return {
     end,
     keys = {
       {
-        "<leader>aC",
+        "<leader>aot",
         function()
           require("codex").toggle()
         end,
@@ -71,21 +71,21 @@ return {
         mode = { "n", "t" },
       },
       {
-        "<leader>ao",
+        "<leader>aoo",
         function()
           require("codex.terminal").open()
         end,
         desc = "Open Codex",
       },
       {
-        "<leader>aq",
+        "<leader>aof",
         function()
           require("codex.terminal").focus_toggle()
         end,
         desc = "Focus Codex",
       },
       {
-        "<leader>as",
+        "<leader>aos",
         function()
           require("codex").actions.send_selection()
         end,
@@ -124,54 +124,54 @@ return {
     end,
     keys = {
       {
-        "<leader>ac",
+        "<leader>act",
         "<cmd>ClaudeCode<cr>",
         desc = "Toggle Claude",
       },
       {
-        "<leader>af",
+        "<leader>acf",
         "<cmd>ClaudeCodeFocus<cr>",
         desc = "Focus Claude",
       },
       {
-        "<leader>ar",
+        "<leader>acr",
         "<cmd>ClaudeCode --resume<cr>",
         desc = "Resume Claude",
       },
       {
-        "<leader>aR",
+        "<leader>acc",
         "<cmd>ClaudeCode --continue<cr>",
         desc = "Continue Claude",
       },
       {
-        "<leader>am",
+        "<leader>acm",
         "<cmd>ClaudeCodeSelectModel<cr>",
         desc = "Select Claude model",
       },
       {
-        "<leader>ab",
+        "<leader>acb",
         "<cmd>ClaudeCodeAdd %<cr>",
         desc = "Add current buffer to Claude",
       },
       {
-        "<leader>aS",
+        "<leader>acs",
         "<cmd>ClaudeCodeSend<cr>",
         desc = "Send selection to Claude",
         mode = "v",
       },
       {
-        "<leader>as",
+        "<leader>aca",
         "<cmd>ClaudeCodeTreeAdd<cr>",
         desc = "Add file to Claude",
         ft = "NvimTree",
       },
       {
-        "<leader>aa",
+        "<leader>acy",
         "<cmd>ClaudeCodeDiffAccept<cr>",
         desc = "Accept Claude diff",
       },
       {
-        "<leader>ad",
+        "<leader>acn",
         "<cmd>ClaudeCodeDiffDeny<cr>",
         desc = "Deny Claude diff",
       },

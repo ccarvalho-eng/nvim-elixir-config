@@ -4,9 +4,9 @@ return {
     cmd = "Trouble",
     opts = {},
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Workspace diagnostics" },
+      { "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", desc = "Workspace diagnostics" },
       {
-        "<leader>xX",
+        "<leader>xb",
         "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
         desc = "Buffer diagnostics",
       },
