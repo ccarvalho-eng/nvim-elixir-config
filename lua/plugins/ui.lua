@@ -107,7 +107,6 @@ return {
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
     },
     config = function()
       require("noice").setup({
@@ -126,19 +125,6 @@ return {
           lsp_doc_border = false,
         },
       })
-    end,
-  },
-
-  -- Notify
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("notify").setup({
-        background_colour = "#000000",
-        render = "compact",
-        stages = "fade",
-      })
-      vim.notify = require("notify")
     end,
   },
 }

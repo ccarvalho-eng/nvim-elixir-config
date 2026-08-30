@@ -103,23 +103,25 @@ return {
     },
   },
 
-  -- Open file/line on GitHub
+  -- Copy a permalink for the current file or selection
   {
-    "ruifm/gitlinker.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("gitlinker").setup({
-        opts = {
-          add_current_line_on_normal_mode = true,
-          action_callback = require("gitlinker.actions").copy_to_clipboard,
-          print_url = true,
-        },
-        mappings = nil,
-      })
-    end,
+    "folke/snacks.nvim",
     keys = {
-      { "<leader>gy", "<cmd>lua require('gitlinker').get_buf_range_url('n')<cr>", desc = "Copy GitHub link" },
-      { "<leader>gy", "<cmd>lua require('gitlinker').get_buf_range_url('v')<cr>", mode = "v", desc = "Copy GitHub link (selection)" },
+      {
+        "<leader>gy",
+        function()
+          Snacks.gitbrowse({
+            what = "permalink",
+            notify = false,
+            open = function(url)
+              vim.fn.setreg("+", url)
+              vim.notify(url, vim.log.levels.INFO, { title = "Copied Git permalink" })
+            end,
+          })
+        end,
+        mode = { "n", "v" },
+        desc = "Copy Git permalink",
+      },
     },
   },
 }

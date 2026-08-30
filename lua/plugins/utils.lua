@@ -26,6 +26,7 @@ return {
         { "<leader>s", group = "Search/Shell" },
         { "<leader>t", group = "Test" },
         { "<leader>u", group = "UI" },
+        { "<leader>x", group = "Diagnostics" },
       })
     end,
   },

@@ -16,15 +16,6 @@ return {
     end,
   },
 
-  -- Commenting (gcc to comment line, gc in visual mode)
-  {
-    "numToStr/Comment.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-
   -- CSV/TSV tabular view
   {
     "hat0uma/csvview.nvim",

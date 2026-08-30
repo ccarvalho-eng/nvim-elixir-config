@@ -1,4 +1,17 @@
-local filetypes = { "elixir", "heex", "eex", "gleam", "lua", "vim", "vimdoc", "markdown", "xml", "html" }
+local filetypes = {
+  "elixir",
+  "heex",
+  "eex",
+  "gleam",
+  "lua",
+  "vim",
+  "vimdoc",
+  "markdown",
+  "markdown_inline",
+  "yaml",
+  "xml",
+  "html",
+}
 local indent_filetypes = {
   elixir = true,
   heex = true,
