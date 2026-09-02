@@ -36,6 +36,10 @@ return {
       "CodexTreeAdd",
     },
     opts = {
+      -- Its defaults claim <leader>cc/cf/cm/cs, which collide with the Code
+      -- group: cf is the LSP format map and cs is Trouble document symbols.
+      -- Codex is bound explicitly under <leader>ao* below.
+      keymaps = false,
       env = {
         ENABLE_IDE_INTEGRATION = "true",
       },
