@@ -39,8 +39,33 @@ return {
 
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_win_position = "left"
-      vim.g.db_ui_winwidth = 30
+      vim.g.db_ui_winwidth = 35
       vim.g.db_ui_use_postgres_views = 1
+
+      -- The drawer help block is a permanent 10-line banner; ? toggles it back.
+      vim.g.db_ui_show_help = 0
+
+      -- Route dadbod's messages through vim.notify, which snacks.notifier owns,
+      -- instead of the cmdline where noice already shows other traffic.
+      vim.g.db_ui_use_nvim_notify = 1
+
+      -- Postgres internals are never the thing being inspected.
+      vim.g.db_ui_hide_schemas = { "pg_catalog", "pg_toast", "information_schema" }
+
+      -- Merged into the built-in helpers, which already cover List, Indexes,
+      -- Foreign Keys, References and Primary Keys. Columns is overridden
+      -- because the default selects all 44 information_schema fields.
+      vim.g.db_ui_table_helpers = {
+        postgresql = {
+          Count = 'select count(*) as rows from {optional_schema}"{table}"',
+          Columns = "select column_name, data_type, is_nullable, column_default"
+            .. " from information_schema.columns"
+            .. " where table_name='{table}' and table_schema='{schema}'"
+            .. " order by ordinal_position",
+          Size = "select pg_size_pretty(pg_total_relation_size('{schema}.{table}')) as total,"
+            .. " pg_size_pretty(pg_relation_size('{schema}.{table}')) as table_only",
+        },
+      }
 
       -- Default is 1, which fires the query on every :w. Keep running a query
       -- an explicit act so saving a scratch buffer cannot hit the database.
