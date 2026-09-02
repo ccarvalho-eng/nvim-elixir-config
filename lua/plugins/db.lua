@@ -72,6 +72,18 @@ return {
       vim.g.db_ui_execute_on_save = 0
     end,
     config = function()
+      -- The drawer is created with `nonumber norelativenumber`, so this has to
+      -- run after it, on the FileType the plugin sets straight afterwards.
+      -- Hybrid numbering, matching the nvim-tree view.
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("UserDadbodDrawer", { clear = true }),
+        pattern = "dbui",
+        callback = function()
+          vim.opt_local.number = true
+          vim.opt_local.relativenumber = true
+        end,
+      })
+
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("UserDadbodCompletion", { clear = true }),
         pattern = { "sql", "mysql", "plsql" },
