@@ -1,6 +1,6 @@
 -- Style loaded at startup. toggle_theme tracks the live style in
 -- vim.g.onedark_style, so both must start from the same value.
-local default_style = "darker"
+local default_style = "dark"
 
 -- Cycle through One Dark variants
 local function toggle_theme()
