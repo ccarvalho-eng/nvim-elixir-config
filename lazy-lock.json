@@ -51,6 +51,10 @@
     "branch": "main",
     "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97"
   },
+  "lazydocker.nvim": {
+    "branch": "main",
+    "commit": "e971ef5d5bba424583c7b8c844e075cdae09f4ad"
+  },
   "lazygit.nvim": {
     "branch": "main",
     "commit": "a04ad0dbc725134edbee3a5eea29290976695357"
@@ -122,6 +126,10 @@
   "telescope.nvim": {
     "branch": "master",
     "commit": "40aedd8a68c78a656a10a8d62d80c54af59420fb"
+  },
+  "toggleterm.nvim": {
+    "branch": "main",
+    "commit": "9a88eae817ef395952e08650b3283726786fb5fb"
   },
   "trouble.nvim": {
     "branch": "main",
