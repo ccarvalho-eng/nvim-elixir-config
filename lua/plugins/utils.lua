@@ -23,6 +23,7 @@ return {
         { "<leader>b", group = "Buffer" },
         { "<leader>bs", group = "Sort" },
         { "<leader>c", group = "Code" },
+        { "<leader>d", group = "Database" },
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
         { "<leader>gb", group = "Blame" },
