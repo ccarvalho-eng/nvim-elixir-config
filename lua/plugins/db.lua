@@ -10,6 +10,33 @@ return {
     },
     cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer", "DB" },
     init = function()
+      -- Named connections, so a URL never has to be typed or remembered.
+      -- Credentials come from the same POSTGRES_* variables the project .envrc
+      -- files export; this repo is public, so nothing is hardcoded here.
+      -- dadbod-ui also picks up $DBUI_URL on its own when one is set.
+      local function pg(database)
+        local password = vim.uri_encode(vim.env.POSTGRES_PASSWORD or "postgres", "rfc2396")
+
+        return string.format(
+          "postgres://%s:%s@%s:%s/%s",
+          vim.env.POSTGRES_USERNAME or "postgres",
+          password,
+          vim.env.PGHOST or "localhost",
+          vim.env.PGPORT or "5432",
+          database
+        )
+      end
+
+      -- Local *_prod databases exist too, but are left out on purpose: a
+      -- connection labelled prod in the drawer is an accident waiting to
+      -- happen. Reach for those through :DB when actually needed.
+      vim.g.dbs = {
+        axle_pay = pg("axle_pay_dev"),
+        axle_pay_eventstore = pg("axle_pay_eventstore_dev"),
+        axle_pay_test = pg("axle_pay_test"),
+        axle_pay_eventstore_test = pg("axle_pay_eventstore_test"),
+      }
+
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_win_position = "left"
       vim.g.db_ui_winwidth = 30
