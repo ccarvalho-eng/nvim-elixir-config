@@ -48,8 +48,17 @@ local function leave_current_buffer()
   end
 end
 
+local function is_terminal(bufnr)
+  return vim.bo[bufnr].buftype == 'terminal'
+end
+
 local function delete_current_buffer(force)
   local current = vim.api.nvim_get_current_buf()
+
+  -- :bdelete refuses to close a terminal whose job is still running (E89).
+  -- That guard protects a live process, not unsaved work, so force it here.
+  -- The modified-file protection below is unaffected.
+  force = force or is_terminal(current)
 
   leave_current_buffer()
   vim.cmd.bdelete({ args = { tostring(current) }, bang = force })
@@ -71,8 +80,13 @@ vim.keymap.set('n', '<leader>ba', function()
 
   for _, bufnr in ipairs(listed_buffers()) do
     -- Deleting a modified buffer errors instead of discarding it, which is the
-    -- behaviour we want here: unsaved work stays open.
-    if bufnr ~= scratch and not pcall(vim.cmd.bdelete, bufnr) then
+    -- behaviour we want here: unsaved work stays open. Terminals are forced
+    -- for the same reason as above: E89 is about the job, not unsaved data.
+    local delete = function()
+      vim.cmd.bdelete({ args = { tostring(bufnr) }, bang = is_terminal(bufnr) })
+    end
+
+    if bufnr ~= scratch and not pcall(delete) then
       kept = kept + 1
     end
   end
