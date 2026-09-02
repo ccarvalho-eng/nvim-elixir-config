@@ -1,5 +1,13 @@
 return {
   -- Autocompletion
+  -- config/lsp.lua reads default_capabilities() at startup, so this one has to
+  -- be on the runtimepath before nvim-cmp itself loads. It is a single table
+  -- of capability flags, so loading it eagerly costs nothing.
+  {
+    "hrsh7th/cmp-nvim-lsp",
+    lazy = false,
+  },
+
   {
     "hrsh7th/nvim-cmp",
     dependencies = {

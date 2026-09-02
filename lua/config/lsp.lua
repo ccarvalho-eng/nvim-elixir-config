@@ -110,6 +110,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+-- Neovim's own client capabilities already cover snippets, resolve support and
+-- label details. cmp-nvim-lsp adds the rest of what nvim-cmp can consume
+-- (commit characters, preselect, deprecated/tag support, insert text modes),
+-- so advertise the merged set to every server rather than per server.
+local function client_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+
+  if not ok then
+    vim.notify(
+      "cmp-nvim-lsp is not loaded; servers will use stock client capabilities",
+      vim.log.levels.WARN
+    )
+    return capabilities
+  end
+
+  return vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+end
+
+vim.lsp.config("*", {
+  capabilities = client_capabilities(),
+})
+
 if vim.fn.executable("dexter") == 1 then
   vim.lsp.config("dexter", {
     cmd = { "dexter", "lsp" },
