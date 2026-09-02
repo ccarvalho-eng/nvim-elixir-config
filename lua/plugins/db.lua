@@ -45,6 +45,11 @@ return {
       -- The drawer help block is a permanent 10-line banner; ? toggles it back.
       vim.g.db_ui_show_help = 0
 
+      -- Results open in the preview window, so previewheight is what sizes
+      -- them. The default 12 lines shows very few rows. This is a global
+      -- option, so it also applies to any other :pedit preview.
+      vim.o.previewheight = math.max(15, math.floor(vim.o.lines * 0.4))
+
       -- Route dadbod's messages through vim.notify, which snacks.notifier owns,
       -- instead of the cmdline where noice already shows other traffic.
       vim.g.db_ui_use_nvim_notify = 1
