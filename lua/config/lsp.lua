@@ -155,3 +155,27 @@ if vim.fn.executable("gleam") == 1 then
 
   vim.lsp.enable("gleam")
 end
+
+if vim.fn.executable("lua-language-server") == 1 then
+  vim.lsp.config("lua_ls", {
+    cmd = { "lua-language-server" },
+    root_markers = { ".luarc.json", ".luarc.jsonc", ".stylua.toml", "stylua.toml", ".git" },
+    filetypes = { "lua" },
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT",
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = vim.api.nvim_get_runtime_file("lua", true),
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  })
+
+  vim.lsp.enable("lua_ls")
+end
