@@ -73,13 +73,38 @@ return {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- The tabline has to exist from startup, so the keys below must not make
+    -- lazy.nvim defer the plugin.
+    lazy = false,
+    keys = {
+      { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
+      { "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", desc = "Close buffers to the left" },
+      { "<leader>bl", "<cmd>BufferLineCloseRight<cr>", desc = "Close buffers to the right" },
+      { "<leader>bp", "<cmd>BufferLineTogglePin<cr>", desc = "Toggle pin" },
+      { "<leader>bj", "<cmd>BufferLinePick<cr>", desc = "Pick buffer" },
+      { "<leader>bx", "<cmd>BufferLinePickClose<cr>", desc = "Pick buffer to close" },
+      { "<leader>b<", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer left" },
+      { "<leader>b>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer right" },
+      { "<leader>bse", "<cmd>BufferLineSortByExtension<cr>", desc = "Sort by extension" },
+      { "<leader>bsd", "<cmd>BufferLineSortByDirectory<cr>", desc = "Sort by directory" },
+      { "<leader>b1", "<cmd>BufferLineGoToBuffer 1<cr>", desc = "Go to buffer 1" },
+      { "<leader>b2", "<cmd>BufferLineGoToBuffer 2<cr>", desc = "Go to buffer 2" },
+      { "<leader>b3", "<cmd>BufferLineGoToBuffer 3<cr>", desc = "Go to buffer 3" },
+      { "<leader>b4", "<cmd>BufferLineGoToBuffer 4<cr>", desc = "Go to buffer 4" },
+      { "<leader>b5", "<cmd>BufferLineGoToBuffer 5<cr>", desc = "Go to buffer 5" },
+      { "<leader>b6", "<cmd>BufferLineGoToBuffer 6<cr>", desc = "Go to buffer 6" },
+      { "<leader>b7", "<cmd>BufferLineGoToBuffer 7<cr>", desc = "Go to buffer 7" },
+      { "<leader>b8", "<cmd>BufferLineGoToBuffer 8<cr>", desc = "Go to buffer 8" },
+      { "<leader>b9", "<cmd>BufferLineGoToBuffer 9<cr>", desc = "Go to buffer 9" },
+      { "<leader>b0", "<cmd>BufferLineGoToBuffer -1<cr>", desc = "Go to last buffer" },
+    },
     config = function()
       require("bufferline").setup({
         options = {
           mode = "buffers",
           numbers = "none",
-          close_command = "bdelete! %d",
-          right_mouse_command = "bdelete! %d",
+          close_command = "bdelete %d",
+          right_mouse_command = "bdelete %d",
           left_mouse_command = "buffer %d",
           indicator = {
             style = 'underline',

@@ -59,6 +59,32 @@ vim.keymap.set('n', '<leader>bd', function()
   delete_current_buffer(false)
 end, { desc = 'Delete buffer' })
 
+vim.keymap.set('n', '<leader>bD', function()
+  delete_current_buffer(true)
+end, { desc = 'Delete buffer (discard changes)' })
+
+vim.keymap.set('n', '<leader>ba', function()
+  vim.cmd.enew()
+
+  local scratch = vim.api.nvim_get_current_buf()
+  local kept = 0
+
+  for _, bufnr in ipairs(listed_buffers()) do
+    -- Deleting a modified buffer errors instead of discarding it, which is the
+    -- behaviour we want here: unsaved work stays open.
+    if bufnr ~= scratch and not pcall(vim.cmd.bdelete, bufnr) then
+      kept = kept + 1
+    end
+  end
+
+  if kept > 0 then
+    vim.notify(kept .. ' buffer(s) kept open with unsaved changes', vim.log.levels.WARN)
+  end
+end, { desc = 'Close all buffers' })
+
+vim.keymap.set('n', '<leader>bb', '<C-^>', { desc = 'Alternate buffer' })
+vim.keymap.set('n', '<leader>bn', '<cmd>enew<cr>', { desc = 'New buffer' })
+
 -- Save and quit shortcuts
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
