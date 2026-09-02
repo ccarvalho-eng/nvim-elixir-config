@@ -26,6 +26,9 @@ return {
         comments = { "#", "//" },
       },
     },
+    keys = {
+      { "<leader>uc", "<cmd>CsvViewToggle<cr>", desc = "Toggle CSV view" },
+    },
   },
 
   -- Surround text objects (cs"' to change " to ')
