@@ -35,6 +35,10 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Default border for every floating window (hover, signature help, pickers
+-- that respect the option) so floats read as distinct from the buffer.
+vim.opt.winborder = "rounded"
+
 -- Backup and swap
 vim.opt.backup = false
 vim.opt.writebackup = false
