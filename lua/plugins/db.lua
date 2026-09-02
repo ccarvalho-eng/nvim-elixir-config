@@ -71,35 +71,21 @@ return {
 
   -- An interactive psql session, for the exploratory work a query buffer is
   -- bad at: \d, tab completion of relation names, \x, transaction state.
-  -- Picks from the same vim.g.dbs connections the drawer uses.
   {
     "folke/snacks.nvim",
     keys = {
       {
         "<leader>dp",
         function()
-          local connections = vim.g.dbs or {}
-          local names = vim.tbl_keys(connections)
-
-          if vim.tbl_isempty(names) then
-            vim.notify("No connections defined in vim.g.dbs", vim.log.levels.WARN)
-            return
-          end
-
-          table.sort(names)
-
-          vim.ui.select(names, { prompt = "psql connection" }, function(choice)
-            if not choice then
+          vim.ui.input({
+            prompt = "psql URL: ",
+            default = "postgres://postgres@localhost:5432/",
+          }, function(url)
+            if not url or vim.trim(url) == "" then
               return
             end
 
-            -- Hand psql the password through the environment rather than the
-            -- URL, so it does not show up in the process list.
-            local url = connections[choice]
-            local password = url:match("^postgres://[^:]+:([^@]*)@")
-
-            Snacks.terminal({ "psql", (url:gsub("(://[^:]+):[^@]*@", "%1@")) }, {
-              env = password and { PGPASSWORD = vim.uri_decode(password) } or nil,
+            Snacks.terminal({ "psql", vim.trim(url) }, {
               win = {
                 position = "bottom",
                 height = 0.4,
