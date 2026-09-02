@@ -6,7 +6,13 @@ return {
       bigfile = { enabled = true },
       dashboard = { enabled = false },
       gitbrowse = { enabled = true },
+      indent = { enabled = true },
       input = { enabled = true },
+      -- Only for the vim.ui.select override, so prompts match snacks.input
+      -- instead of falling back to Neovim's numbered cmdline list. Telescope
+      -- keeps every <leader>f mapping.
+      picker = { enabled = true, ui_select = true },
+      statuscolumn = { enabled = true },
       notifier = {
         enabled = true,
         style = "compact",
