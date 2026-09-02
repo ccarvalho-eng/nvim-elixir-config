@@ -31,19 +31,32 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking' })
 -- Buffer navigation
 vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bd', function()
-  local current = vim.api.nvim_get_current_buf()
-  local listed = vim.tbl_filter(function(bufnr)
+
+local function listed_buffers()
+  return vim.tbl_filter(function(bufnr)
     return vim.bo[bufnr].buflisted
   end, vim.api.nvim_list_bufs())
+end
 
-  if #listed > 1 then
+-- Move off the buffer that is about to be deleted so the window survives, and
+-- fall back to an empty buffer when it was the last one open.
+local function leave_current_buffer()
+  if #listed_buffers() > 1 then
     vim.cmd.bprevious()
   else
     vim.cmd.enew()
   end
+end
 
-  vim.cmd.bdelete(current)
+local function delete_current_buffer(force)
+  local current = vim.api.nvim_get_current_buf()
+
+  leave_current_buffer()
+  vim.cmd.bdelete({ args = { tostring(current) }, bang = force })
+end
+
+vim.keymap.set('n', '<leader>bd', function()
+  delete_current_buffer(false)
 end, { desc = 'Delete buffer' })
 
 -- Save and quit shortcuts
