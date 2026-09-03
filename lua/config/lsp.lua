@@ -65,38 +65,72 @@ local function show_dexter_hover(bufnr)
 
   if now - last_notice > 10000 then
     dexter_hover_notices[root] = now
-    vim.notify("Dexter is still indexing this workspace. Hover docs will populate once that finishes.", vim.log.levels.INFO)
+    vim.notify(
+      "Dexter is still indexing this workspace. Hover docs will populate once that finishes.",
+      vim.log.levels.INFO
+    )
   end
 end
 
 -- LSP keybindings (set when LSP attaches)
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     local opts = { buffer = ev.buf, silent = true }
 
     -- Navigation
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend('force', opts, { desc = 'Go to definition' }))
-    vim.keymap.set('n', 'K', function() show_dexter_hover(ev.buf) end,
-      vim.tbl_extend('force', opts, { desc = 'Hover documentation' }))
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend('force', opts, { desc = 'Go to implementation' }))
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend('force', opts, { desc = 'Show references' }))
+    vim.keymap.set(
+      "n",
+      "gd",
+      vim.lsp.buf.definition,
+      vim.tbl_extend("force", opts, { desc = "Go to definition" })
+    )
+    vim.keymap.set("n", "K", function()
+      show_dexter_hover(ev.buf)
+    end, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
+    vim.keymap.set(
+      "n",
+      "gi",
+      vim.lsp.buf.implementation,
+      vim.tbl_extend("force", opts, { desc = "Go to implementation" })
+    )
+    vim.keymap.set(
+      "n",
+      "gr",
+      vim.lsp.buf.references,
+      vim.tbl_extend("force", opts, { desc = "Show references" })
+    )
 
     -- Actions
-    vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, vim.tbl_extend('force', opts, { desc = 'Rename symbol' }))
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, vim.tbl_extend('force', opts, { desc = 'Code action' }))
-    vim.keymap.set('n', '<leader>cf', function() format_buffer(ev.buf) end,
-      vim.tbl_extend('force', opts, { desc = 'Format buffer' }))
-    vim.keymap.set('n', '<leader>cd', function()
+    vim.keymap.set(
+      "n",
+      "<leader>cr",
+      vim.lsp.buf.rename,
+      vim.tbl_extend("force", opts, { desc = "Rename symbol" })
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>ca",
+      vim.lsp.buf.code_action,
+      vim.tbl_extend("force", opts, { desc = "Code action" })
+    )
+    vim.keymap.set("n", "<leader>cf", function()
+      format_buffer(ev.buf)
+    end, vim.tbl_extend("force", opts, { desc = "Format buffer" }))
+    vim.keymap.set("n", "<leader>cd", function()
       local line = vim.api.nvim_get_current_line()
       local cursor = vim.api.nvim_win_get_cursor(0)
       local new_line = line .. " |> dbg()"
       vim.api.nvim_set_current_line(new_line)
-      vim.api.nvim_win_set_cursor(0, {cursor[1], #new_line - 1})
-    end, vim.tbl_extend('force', opts, { desc = 'Append |> dbg()' }))
+      vim.api.nvim_win_set_cursor(0, { cursor[1], #new_line - 1 })
+    end, vim.tbl_extend("force", opts, { desc = "Append |> dbg()" }))
 
-    if client and client.name == "dexter" and client:supports_method("textDocument/formatting", ev.buf) then
+    if
+      client
+      and client.name == "dexter"
+      and client:supports_method("textDocument/formatting", ev.buf)
+    then
       local group = vim.api.nvim_create_augroup("DexterFormatOnSave", { clear = false })
       vim.api.nvim_clear_autocmds({ group = group, buffer = ev.buf })
       vim.api.nvim_create_autocmd("BufWritePre", {

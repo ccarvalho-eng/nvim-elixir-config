@@ -15,7 +15,12 @@ return {
       })
     end,
     keys = {
-      { "<leader>ghs", "<cmd>Gitsigns stage_hunk<cr>", mode = { "n", "v" }, desc = "Stage hunk (toggles)" },
+      {
+        "<leader>ghs",
+        "<cmd>Gitsigns stage_hunk<cr>",
+        mode = { "n", "v" },
+        desc = "Stage hunk (toggles)",
+      },
       { "<leader>ghr", "<cmd>Gitsigns reset_hunk<cr>", mode = { "n", "v" }, desc = "Reset hunk" },
       { "<leader>ghS", "<cmd>Gitsigns stage_buffer<cr>", desc = "Stage buffer" },
       { "<leader>ghR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset buffer" },
@@ -35,7 +40,11 @@ return {
       { "<leader>ghQ", "<cmd>Gitsigns setqflist all<cr>", desc = "All hunks to quickfix" },
       { "<leader>ghl", "<cmd>Gitsigns setloclist<cr>", desc = "Buffer hunks to location list" },
       { "<leader>gbb", "<cmd>Gitsigns blame<cr>", desc = "Blame file" },
-      { "<leader>gbl", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle inline blame" },
+      {
+        "<leader>gbl",
+        "<cmd>Gitsigns toggle_current_line_blame<cr>",
+        desc = "Toggle inline blame",
+      },
       {
         "]h",
         function()

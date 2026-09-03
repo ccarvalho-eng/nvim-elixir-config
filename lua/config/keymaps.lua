@@ -1,36 +1,36 @@
 -- General keybindings (non-plugin specific)
 
 -- Clear search highlighting
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlighting' })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlighting" })
 
 -- Window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to bottom window' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to top window' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Resize windows with arrows
-vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
-vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
-vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
-vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move lines up/down
-vim.keymap.set('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move line down' })
-vim.keymap.set('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move line up' })
-vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move selection down' })
-vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move line up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
 
 -- Better indenting
-vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
-vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Stay in visual mode when pasting
-vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking' })
+vim.keymap.set("v", "p", '"_dP', { desc = "Paste without yanking" })
 
 -- Buffer navigation
-vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
-vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 local function listed_buffers()
   return vim.tbl_filter(function(bufnr)
@@ -49,7 +49,7 @@ local function leave_current_buffer()
 end
 
 local function is_terminal(bufnr)
-  return vim.bo[bufnr].buftype == 'terminal'
+  return vim.bo[bufnr].buftype == "terminal"
 end
 
 local function delete_current_buffer(force)
@@ -64,15 +64,15 @@ local function delete_current_buffer(force)
   vim.cmd.bdelete({ args = { tostring(current) }, bang = force })
 end
 
-vim.keymap.set('n', '<leader>bd', function()
+vim.keymap.set("n", "<leader>bd", function()
   delete_current_buffer(false)
-end, { desc = 'Delete buffer' })
+end, { desc = "Delete buffer" })
 
-vim.keymap.set('n', '<leader>bD', function()
+vim.keymap.set("n", "<leader>bD", function()
   delete_current_buffer(true)
-end, { desc = 'Delete buffer (discard changes)' })
+end, { desc = "Delete buffer (discard changes)" })
 
-vim.keymap.set('n', '<leader>ba', function()
+vim.keymap.set("n", "<leader>ba", function()
   vim.cmd.enew()
 
   local scratch = vim.api.nvim_get_current_buf()
@@ -92,22 +92,22 @@ vim.keymap.set('n', '<leader>ba', function()
   end
 
   if kept > 0 then
-    vim.notify(kept .. ' buffer(s) kept open with unsaved changes', vim.log.levels.WARN)
+    vim.notify(kept .. " buffer(s) kept open with unsaved changes", vim.log.levels.WARN)
   end
-end, { desc = 'Close all buffers' })
+end, { desc = "Close all buffers" })
 
-vim.keymap.set('n', '<leader>bb', '<C-^>', { desc = 'Alternate buffer' })
-vim.keymap.set('n', '<leader>bn', '<cmd>enew<cr>', { desc = 'New buffer' })
+vim.keymap.set("n", "<leader>bb", "<C-^>", { desc = "Alternate buffer" })
+vim.keymap.set("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New buffer" })
 
 -- Save and quit shortcuts
-vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
-vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 
 -- Git worktree navigation
-vim.keymap.set('n', '<leader>gww', function()
-  require('config.worktree').switch()
-end, { desc = 'Switch worktree in tab' })
+vim.keymap.set("n", "<leader>gww", function()
+  require("config.worktree").switch()
+end, { desc = "Switch worktree in tab" })
 
-vim.keymap.set('n', '<leader>gwt', function()
-  require('config.worktree').tab()
-end, { desc = 'Open worktree in new tab' })
+vim.keymap.set("n", "<leader>gwt", function()
+  require("config.worktree").tab()
+end, { desc = "Open worktree in new tab" })

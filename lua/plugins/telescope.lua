@@ -106,7 +106,12 @@ return {
       { "<leader>fp", "<cmd>Telescope project<cr>", desc = "Find projects" },
       { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
       { "<leader>gC", "<cmd>Telescope git_bcommits<cr>", desc = "Buffer commits" },
-      { "<leader>gC", "<cmd>Telescope git_bcommits_range<cr>", mode = "v", desc = "Commits for selection" },
+      {
+        "<leader>gC",
+        "<cmd>Telescope git_bcommits_range<cr>",
+        mode = "v",
+        desc = "Commits for selection",
+      },
       { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
       { "<leader>gr", "<cmd>Telescope git_branches<cr>", desc = "Branches" },
       { "<leader>gz", "<cmd>Telescope git_stash<cr>", desc = "Stashes" },
