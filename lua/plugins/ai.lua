@@ -22,7 +22,7 @@ return {
       terminal = {
         provider = "snacks",
         split_side = "right",
-        split_width_percentage = 0.35,
+        split_width_percentage = 0.30,
       },
       diff_opts = {
         layout = "horizontal",
@@ -97,7 +97,7 @@ return {
       terminal = {
         provider = "snacks",
         split_side = "right",
-        split_width_percentage = 0.35,
+        split_width_percentage = 0.30,
       },
       diff_opts = {
         layout = "horizontal",
@@ -191,6 +191,10 @@ return {
       -- matching <leader>ac (Claude) and <leader>ao (Codex).
       keymap_prefix = "<leader>ap",
       preferred_picker = "telescope",
+      ui = {
+        position = "right",
+        window_width = 0.30,
+      },
     },
     config = function(_, opts)
       require("opencode").setup(opts)
