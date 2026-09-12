@@ -153,4 +153,29 @@ return {
       },
     },
   },
+
+  {
+    "sudo-tee/opencode.nvim",
+    dependencies = {
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          anti_conceal = { enabled = false },
+          file_types = { "markdown", "opencode_output" },
+        },
+        ft = { "markdown", "opencode_output" },
+      },
+      "folke/snacks.nvim",
+    },
+    opts = {
+      -- Default prefix is <leader>o, which collides with the Notes group
+      -- (obsidian). Scope every opencode keymap under the AI group instead,
+      -- matching <leader>ac (Claude) and <leader>ao (Codex).
+      keymap_prefix = "<leader>ap",
+      preferred_picker = "telescope",
+    },
+    config = function(_, opts)
+      require("opencode").setup(opts)
+    end,
+  },
 }

@@ -20,6 +20,7 @@ return {
         { "<leader>a", group = "AI" },
         { "<leader>ac", group = "Claude" },
         { "<leader>ao", group = "Codex" },
+        { "<leader>ap", group = "OpenCode" },
         { "<leader>b", group = "Buffer" },
         { "<leader>bs", group = "Sort" },
         { "<leader>c", group = "Code" },
