@@ -4,6 +4,7 @@ return {
     cmd = {
       "Codex",
       "CodexFocus",
+      "CodexMaximizeToggle",
       "CodexSend",
       "CodexTreeAdd",
     },
@@ -68,6 +69,11 @@ return {
         desc = "Send selection to Codex",
         mode = "v",
       },
+      {
+        "<leader>aom",
+        "<cmd>CodexMaximizeToggle<cr>",
+        desc = "Toggle Codex maximize",
+      },
     },
   },
 
@@ -77,11 +83,13 @@ return {
     cmd = {
       "ClaudeCode",
       "ClaudeCodeAdd",
+      "ClaudeCodeCloseAllDiffs",
       "ClaudeCodeDiffAccept",
       "ClaudeCodeDiffDeny",
       "ClaudeCodeFocus",
       "ClaudeCodeSelectModel",
       "ClaudeCodeSend",
+      "ClaudeCodeStatus",
       "ClaudeCodeTreeAdd",
     },
     opts = {
@@ -150,6 +158,16 @@ return {
         "<leader>acn",
         "<cmd>ClaudeCodeDiffDeny<cr>",
         desc = "Deny Claude diff",
+      },
+      {
+        "<leader>acx",
+        "<cmd>ClaudeCodeCloseAllDiffs<cr>",
+        desc = "Close all Claude diffs",
+      },
+      {
+        "<leader>aci",
+        "<cmd>ClaudeCodeStatus<cr>",
+        desc = "Claude connection status",
       },
     },
   },
