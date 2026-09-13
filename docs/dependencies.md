@@ -48,15 +48,15 @@ Elixir and Erlang installation is intentionally not covered here.
 
 ## 4. Local AI
 
-OpenCode, Pi, and Ollama are required only for their local AI integrations:
+Pi, Ollama, and Ketch are required only for the local AI integration:
 
 ```shell
-brew install anomalyco/tap/opencode
 brew install --cask ollama-app
+brew install 1broseidon/tap/ketch
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 ```
 
-Follow [OpenCode and Pi with Ollama](opencode-ollama.md) to install the models and configure their shared short aliases.
+Follow [Pi with Ollama](pi-ollama.md) to install the models and configure their short aliases.
 
 Codex and Claude are separate, optional integrations:
 

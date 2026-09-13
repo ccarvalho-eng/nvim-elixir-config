@@ -173,40 +173,6 @@ return {
   },
 
   {
-    "sudo-tee/opencode.nvim",
-    dependencies = {
-      "folke/snacks.nvim",
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        ft = "opencode_output",
-        opts = {
-          anti_conceal = { enabled = false },
-          file_types = { "opencode_output" },
-        },
-      },
-    },
-    opts = {
-      -- Default prefix is <leader>o, which collides with the Notes group
-      -- (obsidian). Scope every opencode keymap under the AI group instead,
-      -- matching <leader>ac (Claude) and <leader>ao (Codex).
-      keymap_prefix = "<leader>ap",
-      preferred_picker = "telescope",
-      keymap = {
-        editor = {
-          ["<leader>apm"] = { "configure_provider", desc = "Select OpenCode model" },
-        },
-      },
-      ui = {
-        position = "right",
-        window_width = 0.30,
-      },
-    },
-    config = function(_, opts)
-      require("opencode").setup(opts)
-    end,
-  },
-
-  {
     "alex35mil/pi.nvim",
     cmd = {
       "Pi",
@@ -221,6 +187,12 @@ return {
       "PiToggleLayout",
     },
     opts = {
+      cli = {
+        args = {
+          "--tools",
+          "read,bash,edit,write,grep,find,ls,internet_search,internet_scrape",
+        },
+      },
       models = {
         "qwen3-coder:deep",
         "qwen2.5-coder:fast",
@@ -236,7 +208,7 @@ return {
     },
     keys = {
       {
-        "<leader>ait",
+        "<leader>apt",
         function()
           require("pi").toggle({ layout = "side" })
         end,
@@ -244,41 +216,41 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>aif",
+        "<leader>apf",
         "<cmd>Pi layout=float<cr>",
         desc = "Open Pi float",
         mode = { "n", "v" },
       },
       {
-        "<leader>aic",
+        "<leader>apc",
         "<cmd>PiContinue<cr>",
         desc = "Continue Pi session",
         mode = { "n", "v" },
       },
       {
-        "<leader>air",
+        "<leader>apr",
         "<cmd>PiResume<cr>",
         desc = "Resume Pi session",
         mode = { "n", "v" },
       },
       {
-        "<leader>aim",
+        "<leader>apm",
         "<cmd>PiSelectModel<cr>",
         desc = "Select Pi model",
       },
       {
-        "<leader>ais",
+        "<leader>aps",
         "<cmd>PiSendMention<cr>",
         desc = "Send selection to Pi",
         mode = { "n", "v" },
       },
       {
-        "<leader>aia",
+        "<leader>apa",
         "<cmd>PiAttention<cr>",
         desc = "Open Pi attention request",
       },
       {
-        "<leader>aix",
+        "<leader>apx",
         "<cmd>PiAbort<cr>",
         desc = "Abort Pi operation",
       },
