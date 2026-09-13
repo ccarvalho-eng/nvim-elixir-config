@@ -1,3 +1,6 @@
+-- nvim-treesitter calls vim.list.unique while resolving configured languages.
+-- Keep this defensive fallback for Neovim builds that do not expose the
+-- helper; supported builds retain their native implementation unchanged.
 if vim.list == nil then
   vim.list = {}
 end

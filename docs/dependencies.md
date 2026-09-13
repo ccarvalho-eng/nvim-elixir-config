@@ -21,7 +21,7 @@ brew install --cask font-fira-code-nerd-font
 
 | Tool | Why it is needed | Used by |
 | --- | --- | --- |
-| `neovim` | Runs this configuration | The editor |
+| `neovim` 0.12 or newer | Runs this configuration | The editor and nvim-treesitter |
 | `ripgrep` (`rg`) | Fast project text search | Telescope, Grug Far, Obsidian |
 | `fd` | Fast file discovery | Telescope |
 | `tree-sitter-cli` | Installs and updates syntax parsers | nvim-treesitter |
