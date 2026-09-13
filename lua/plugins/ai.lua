@@ -176,6 +176,14 @@ return {
     "sudo-tee/opencode.nvim",
     dependencies = {
       "folke/snacks.nvim",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = "opencode_output",
+        opts = {
+          anti_conceal = { enabled = false },
+          file_types = { "opencode_output" },
+        },
+      },
     },
     opts = {
       -- Default prefix is <leader>o, which collides with the Notes group
