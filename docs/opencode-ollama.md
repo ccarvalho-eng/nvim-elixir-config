@@ -1,11 +1,12 @@
 # OpenCode with Ollama
 
-Local coding setup for a 32 GB M1 Pro MacBook. Both profiles use a 32K context to leave memory for macOS and development tools.
+Local coding and writing setup for a 32 GB M1 Pro MacBook. All profiles use a 32K context to leave memory for macOS and development tools.
 
 | Model | Real model | Purpose | Size |
 | --- | --- | --- | --- |
 | `qwen3-coder:deep` | Qwen3 Coder 30B | Larger changes and repository work | 18 GB |
 | `qwen2.5-coder:fast` | Qwen2.5 Coder 14B | Quick edits and questions | 9 GB |
+| `mistral-small3.2:writing` | Mistral Small 3.2 24B | Prose, essays, and editing | 15 GB |
 
 ## 1. Check the tools
 
@@ -22,6 +23,7 @@ Start the Ollama app before continuing.
 ```shell
 ollama pull qwen3-coder:30b
 ollama pull qwen2.5-coder:14b
+ollama pull mistral-small3.2
 ```
 
 ## 3. Create the 32K profiles
@@ -42,11 +44,20 @@ FROM qwen2.5-coder:14b
 PARAMETER num_ctx 32768
 ```
 
+Create `~/.config/ollama/Modelfile.mistral-small3.2-writing`:
+
+```dockerfile
+FROM mistral-small3.2
+
+PARAMETER num_ctx 32768
+```
+
 Build the profiles:
 
 ```shell
 ollama create qwen3-coder:deep -f ~/.config/ollama/Modelfile.qwen3-coder-deep
 ollama create qwen2.5-coder:fast -f ~/.config/ollama/Modelfile.qwen2.5-coder-fast
+ollama create mistral-small3.2:writing -f ~/.config/ollama/Modelfile.mistral-small3.2-writing
 ```
 
 ## 4. Configure OpenCode
@@ -79,6 +90,13 @@ Set `~/.config/opencode/opencode.jsonc`:
             "context": 32768,
             "output": 8192
           }
+        },
+        "mistral-small3.2:writing": {
+          "name": "Writing · Mistral Small 3.2 24B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
         }
       }
     }
@@ -92,7 +110,7 @@ The deep model is the default.
 
 `opencode.nvim` reads the global OpenCode configuration automatically.
 
-- `<leader>apm`: select the deep or fast model
+- `<leader>apm`: select the deep, fast, or writing model
 - `<leader>apg`: toggle OpenCode
 - `<leader>api`: open the prompt input
 
@@ -102,6 +120,7 @@ The deep model is the default.
 ollama list
 opencode models ollama
 ollama run qwen2.5-coder:fast "Reply with OK"
+ollama run mistral-small3.2:writing "Reply with OK"
 ollama ps
 ```
 
@@ -115,6 +134,9 @@ opencode
 
 # One task with the fast model
 opencode run -m ollama/qwen2.5-coder:fast "explain this change"
+
+# One writing task
+opencode run -m ollama/mistral-small3.2:writing "revise this essay"
 ```
 
 Re-run `ollama create` after changing a Modelfile. Restart OpenCode after changing its configuration.
