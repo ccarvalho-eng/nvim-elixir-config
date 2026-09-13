@@ -6,7 +6,7 @@ This is a personal configuration rather than a general-purpose Neovim distributi
 
 ## Highlights
 
-- Native Neovim LSP configuration for Dexter, Gleam, and Lua.
+- Native Neovim LSP configuration for Dexter, Gleam, and Lua, with floating previews for definitions and references.
 - Tree-sitter syntax highlighting and indentation.
 - Completion, diagnostics, formatting, and test navigation.
 - Telescope search, nvim-tree file browsing, and project-wide replacement.
@@ -51,6 +51,17 @@ The leader key is `Space`; the local leader is `,`. Press `Space` and pause to o
 | `<leader>x` | Diagnostics |
 
 Mappings are defined close to the behavior they invoke and include descriptions consumed by which-key. General mappings live in `lua/config/keymaps.lua`; plugin mappings live with their plugin specifications.
+
+### LSP previews
+
+| Mapping | Action |
+| --- | --- |
+| `gpd` | Preview definition |
+| `gpt` | Preview type definition |
+| `gpi` | Preview implementation |
+| `gpD` | Preview declaration |
+| `gpr` | Preview references |
+| `gpc` | Close all preview windows |
 
 ## Organization
 

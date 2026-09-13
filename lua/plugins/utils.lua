@@ -37,6 +37,7 @@ return {
         { "<leader>t", group = "Tests" },
         { "<leader>u", group = "Utilities" },
         { "<leader>x", group = "Diagnostics" },
+        { "gp", group = "Preview" },
       })
     end,
   },
