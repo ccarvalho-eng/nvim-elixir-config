@@ -191,6 +191,11 @@ return {
       -- matching <leader>ac (Claude) and <leader>ao (Codex).
       keymap_prefix = "<leader>ap",
       preferred_picker = "telescope",
+      keymap = {
+        editor = {
+          ["<leader>apm"] = { "configure_provider", desc = "Select OpenCode model" },
+        },
+      },
       ui = {
         position = "right",
         window_width = 0.30,
