@@ -10,7 +10,7 @@ local function toggle_test_file()
   end
 
   if vim.fn.filereadable(alternate_file) == 1 then
-    vim.cmd("edit " .. alternate_file)
+    vim.cmd.edit(vim.fn.fnameescape(alternate_file))
   else
     if alternate_file:match("_test%.exs$") then
       local dir = vim.fn.fnamemodify(alternate_file, ":h")
@@ -47,7 +47,7 @@ end
       )
 
       vim.fn.writefile(vim.split(content, "\n"), alternate_file)
-      vim.cmd("edit " .. alternate_file)
+      vim.cmd.edit(vim.fn.fnameescape(alternate_file))
       vim.notify("Created: " .. alternate_file, vim.log.levels.INFO)
     else
       vim.notify("File not found: " .. alternate_file, vim.log.levels.WARN)

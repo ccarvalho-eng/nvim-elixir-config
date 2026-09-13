@@ -2,6 +2,41 @@
 -- vim.g.onedark_style, so both must start from the same value.
 local default_style = "dark"
 
+local function show_winbar()
+  return vim.bo.buftype == "" and vim.api.nvim_buf_get_name(0) ~= ""
+end
+
+local function winbar_sections()
+  return {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {
+      {
+        "filename",
+        path = 1,
+        cond = show_winbar,
+        symbols = {
+          modified = " ●",
+          readonly = " ",
+          unnamed = "",
+        },
+      },
+    },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  }
+end
+
+local function bufferline_highlights(config)
+  config.highlights.indicator_selected.fg = {
+    attribute = "fg",
+    highlight = "String",
+  }
+
+  return config.highlights
+end
+
 -- Cycle through One Dark variants
 local function toggle_theme()
   local styles = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
@@ -48,6 +83,7 @@ return {
   {
     "folke/snacks.nvim",
     lazy = false,
+    priority = 1000,
     opts = {
       bigfile = { enabled = true },
       dashboard = { enabled = false },
@@ -98,6 +134,8 @@ return {
           lualine_y = { "progress" },
           lualine_z = { "location" },
         },
+        winbar = winbar_sections(),
+        inactive_winbar = winbar_sections(),
       })
     end,
   },
@@ -133,17 +171,22 @@ return {
       { "<leader>b0", "<cmd>BufferLineGoToBuffer -1<cr>", desc = "Go to last buffer" },
     },
     config = function()
-      require("bufferline").setup({
+      local bufferline = require("bufferline")
+
+      bufferline.setup({
         options = {
           mode = "buffers",
+          style_preset = bufferline.style_preset.minimal,
           numbers = "none",
           close_command = "bdelete %d",
           right_mouse_command = "bdelete %d",
           left_mouse_command = "buffer %d",
           indicator = {
-            style = "underline",
+            icon = "▎",
+            style = "icon",
           },
           diagnostics = "nvim_lsp",
+          diagnostics_indicator = false,
           offsets = {
             {
               filetype = "NvimTree",
@@ -152,10 +195,12 @@ return {
               separator = true,
             },
           },
-          show_buffer_close_icons = true,
+          show_buffer_close_icons = false,
           show_close_icon = false,
           separator_style = "thin",
+          always_show_bufferline = false,
         },
+        highlights = bufferline_highlights,
       })
     end,
   },

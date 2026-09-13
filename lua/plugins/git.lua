@@ -77,26 +77,6 @@ return {
     },
   },
 
-  -- LazyGit integration
-  {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    keys = {
-      { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-      { "<leader>gG", "<cmd>LazyGitCurrentFile<cr>", desc = "LazyGit for current file's repo" },
-      { "<leader>gL", "<cmd>LazyGitFilterCurrentFile<cr>", desc = "LazyGit log for current file" },
-    },
-  },
-
   -- Git diff/file history viewer
   {
     "sindrets/diffview.nvim",
@@ -169,6 +149,27 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit()
+        end,
+        desc = "LazyGit",
+      },
+      {
+        "<leader>gG",
+        function()
+          Snacks.lazygit({ cwd = vim.fn.expand("%:p:h") })
+        end,
+        desc = "LazyGit for current file's repo",
+      },
+      {
+        "<leader>gL",
+        function()
+          Snacks.lazygit.log_file()
+        end,
+        desc = "LazyGit log for current file",
+      },
       {
         "<leader>glo",
         function()

@@ -118,13 +118,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>cf", function()
       format_buffer(ev.buf)
     end, vim.tbl_extend("force", opts, { desc = "Format buffer" }))
-    vim.keymap.set("n", "<leader>cd", function()
-      local line = vim.api.nvim_get_current_line()
-      local cursor = vim.api.nvim_win_get_cursor(0)
-      local new_line = line .. " |> dbg()"
-      vim.api.nvim_set_current_line(new_line)
-      vim.api.nvim_win_set_cursor(0, { cursor[1], #new_line - 1 })
-    end, vim.tbl_extend("force", opts, { desc = "Append |> dbg()" }))
+    if vim.bo[ev.buf].filetype == "elixir" then
+      vim.keymap.set("n", "<leader>cd", function()
+        local line = vim.api.nvim_get_current_line()
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        local new_line = line .. " |> dbg()"
+        vim.api.nvim_set_current_line(new_line)
+        vim.api.nvim_win_set_cursor(0, { cursor[1], #new_line - 1 })
+      end, vim.tbl_extend("force", opts, { desc = "Append |> dbg()" }))
+    end
 
     if
       client

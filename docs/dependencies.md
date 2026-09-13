@@ -25,7 +25,7 @@ brew install --cask font-fira-code-nerd-font
 | `ripgrep` (`rg`) | Fast project text search | Telescope, Grug Far, Obsidian |
 | `fd` | Fast file discovery | Telescope |
 | `tree-sitter-cli` | Installs and updates syntax parsers | nvim-treesitter |
-| `lazygit` | Interactive Git interface | lazygit.nvim |
+| `lazygit` | Interactive Git interface | Snacks |
 | `stylua` | Formats Lua files | conform.nvim |
 | `lua-language-server` | Lua diagnostics, navigation, and completion | Neovim LSP and nvim-cmp |
 | Nerd Font | Supplies the icons used by the interface | Bufferline, Lualine, nvim-tree, devicons |
@@ -68,7 +68,7 @@ Install only what you use.
 
 | Feature | Installation | Why it is needed |
 | --- | --- | --- |
-| Docker | Docker Desktop and `brew install lazydocker` | Runs containers and provides the LazyDocker interface |
+| Docker | Docker Desktop and `brew install lazydocker` | Runs containers and lets Snacks open LazyDocker |
 | PostgreSQL | `brew install libpq`, then put its `bin` directory on `PATH` | Lets Dadbod and the PostgreSQL terminal run `psql` |
 | MySQL | `brew install mysql-client`, then put its `bin` directory on `PATH` | Lets Dadbod connect through the MySQL client |
 | SQLite | `sqlite3` is included with macOS | Lets Dadbod open SQLite databases |
@@ -97,7 +97,7 @@ Useful feature checks:
 
 ```vim
 :ConformInfo
-:checkhealth lazydocker
+:checkhealth snacks
 :Obsidian check
 ```
 

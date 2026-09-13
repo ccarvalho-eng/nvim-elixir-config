@@ -4,10 +4,14 @@ vim.g.mapleader = " "
 -- namespace instead of shadowing the <leader> mappings.
 vim.g.maplocalleader = ","
 
+-- No configured plugin uses Neovim's legacy Node remote-plugin provider.
+vim.g.loaded_node_provider = 0
+
 -- Display settings
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.pumblend = 10
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8

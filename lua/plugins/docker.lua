@@ -1,22 +1,22 @@
 return {
-  -- LazyDocker in a floating window, mirroring the LazyGit integration
   {
-    "mgierada/lazydocker.nvim",
-    dependencies = { "akinsho/toggleterm.nvim" },
-    cmd = "Lazydocker",
-    opts = {
-      border = "rounded",
-      width = 0.9,
-      height = 0.9,
-    },
-    config = function(_, opts)
-      require("lazydocker").setup(opts)
-    end,
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>ud",
         function()
-          require("lazydocker").open()
+          if vim.fn.executable("lazydocker") ~= 1 then
+            vim.notify("lazydocker is not installed", vim.log.levels.WARN)
+            return
+          end
+
+          Snacks.terminal("lazydocker", {
+            win = {
+              border = "rounded",
+              height = 0.9,
+              width = 0.9,
+            },
+          })
         end,
         desc = "LazyDocker",
       },

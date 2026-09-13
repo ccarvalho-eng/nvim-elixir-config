@@ -13,6 +13,11 @@ return {
           relativenumber = true,
         },
         renderer = {
+          group_empty = true,
+          highlight_git = "name",
+          indent_markers = {
+            enable = true,
+          },
           icons = {
             show = {
               file = true,
