@@ -19,6 +19,7 @@ return {
       wk.add({
         { "<leader>a", group = "AI" },
         { "<leader>ac", group = "Claude" },
+        { "<leader>ai", group = "Pi" },
         { "<leader>ao", group = "Codex" },
         { "<leader>ap", group = "OpenCode" },
         { "<leader>b", group = "Buffer" },

@@ -205,4 +205,83 @@ return {
       require("opencode").setup(opts)
     end,
   },
+
+  {
+    "alex35mil/pi.nvim",
+    cmd = {
+      "Pi",
+      "PiAbort",
+      "PiAttention",
+      "PiContinue",
+      "PiResume",
+      "PiSelectModel",
+      "PiSendMention",
+      "PiStop",
+      "PiToggleChat",
+      "PiToggleLayout",
+    },
+    opts = {
+      models = {
+        "qwen3-coder:deep",
+        "qwen2.5-coder:fast",
+        "mistral-small3.2:writing",
+      },
+      layout = {
+        default = "side",
+        side = {
+          position = "right",
+          width = 80,
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>ait",
+        function()
+          require("pi").toggle({ layout = "side" })
+        end,
+        desc = "Toggle Pi",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>aif",
+        "<cmd>Pi layout=float<cr>",
+        desc = "Open Pi float",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>aic",
+        "<cmd>PiContinue<cr>",
+        desc = "Continue Pi session",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>air",
+        "<cmd>PiResume<cr>",
+        desc = "Resume Pi session",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>aim",
+        "<cmd>PiSelectModel<cr>",
+        desc = "Select Pi model",
+      },
+      {
+        "<leader>ais",
+        "<cmd>PiSendMention<cr>",
+        desc = "Send selection to Pi",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>aia",
+        "<cmd>PiAttention<cr>",
+        desc = "Open Pi attention request",
+      },
+      {
+        "<leader>aix",
+        "<cmd>PiAbort<cr>",
+        desc = "Abort Pi operation",
+      },
+    },
+  },
 }

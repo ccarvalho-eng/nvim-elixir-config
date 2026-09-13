@@ -12,7 +12,7 @@ This is a personal configuration rather than a general-purpose Neovim distributi
 - Telescope search, nvim-tree file browsing, and project-wide replacement.
 - Gitsigns, Diffview, LazyGit, permalinks, and tab-local worktree switching.
 - Dadbod database browsing and an integrated `psql` terminal.
-- Optional Codex, Claude Code, OpenCode, Ollama, and Obsidian integrations.
+- Optional Codex, Claude Code, OpenCode, Pi, Ollama, and Obsidian integrations.
 
 ## Requirements
 
@@ -98,4 +98,4 @@ Keep credentials and machine-specific paths out of the repository. Prefer enviro
 ## Guides
 
 - [System dependencies](docs/dependencies.md)
-- [OpenCode with local Ollama models](docs/opencode-ollama.md)
+- [OpenCode and Pi with local Ollama models](docs/opencode-ollama.md)
