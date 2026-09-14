@@ -69,10 +69,6 @@ Install only what you use.
 
 | Feature | Installation | Why it is needed |
 | --- | --- | --- |
-| Docker | Docker Desktop and `brew install lazydocker` | Runs containers and lets Snacks open LazyDocker |
-| PostgreSQL | `brew install libpq`, then put its `bin` directory on `PATH` | Lets Dadbod and the PostgreSQL terminal run `psql` |
-| MySQL | `brew install mysql-client`, then put its `bin` directory on `PATH` | Lets Dadbod connect through the MySQL client |
-| SQLite | `sqlite3` is included with macOS | Lets Dadbod open SQLite databases |
 | Gleam | `brew install gleam` | Enables the configured Gleam language server |
 | Obsidian | Obsidian app, `ripgrep`, and `OBSIDIAN_VAULT` | Opens the vault, searches notes, and launches the desktop app |
 | Tests | The current project's test runner | Allows vim-test to execute tests |

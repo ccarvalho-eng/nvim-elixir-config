@@ -11,7 +11,6 @@ This is a personal configuration rather than a general-purpose Neovim distributi
 - Completion, diagnostics, formatting, and test navigation.
 - Telescope search, nvim-tree file browsing, and project-wide replacement.
 - Gitsigns, Diffview, LazyGit, permalinks, and tab-local worktree switching.
-- Dadbod database browsing and an integrated `psql` terminal.
 - Optional Codex, Claude Code, Pi, Ollama, and Obsidian integrations.
 
 ## Requirements
@@ -21,7 +20,7 @@ This is a personal configuration rather than a general-purpose Neovim distributi
 - Git and the required command-line tools listed in [docs/dependencies.md](docs/dependencies.md).
 - A Nerd Font configured in the terminal.
 
-AI assistants, database clients, Docker tools, language servers other than Lua, and Obsidian are optional. Their plugin specifications can remain installed when the corresponding executable or environment variable is unavailable.
+AI assistants, language servers other than Lua, and Obsidian are optional. Their plugin specifications can remain installed when the corresponding executable or environment variable is unavailable.
 
 ## Installation
 
@@ -83,7 +82,6 @@ Plugin specifications are grouped by user-facing capability rather than one file
 
 - Telescope discovers projects below `~/Projects` and excludes `~/Projects/.worktrees` from its project history.
 - `OBSIDIAN_VAULT` must point to an existing vault before the Obsidian integration is used.
-- Dadbod reads `POSTGRES_USERNAME`, `POSTGRES_PASSWORD`, `PGHOST`, and `PGPORT`. Named databases are personal defaults defined in `lua/plugins/db.lua`.
 - `<leader>ta` follows the conventional Elixir `lib/` and `test/` layout. When no matching test exists, it creates a basic ExUnit test file.
 
 Keep credentials and machine-specific paths out of the repository. Prefer environment variables for local overrides.
