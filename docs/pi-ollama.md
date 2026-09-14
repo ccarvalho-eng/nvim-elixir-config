@@ -117,7 +117,7 @@ The `pi install` commands record both pinned packages in `~/.pi/agent/settings.j
 
 `pi.nvim` reads the global Pi configuration and exposes the same three local models:
 
-- `<leader>apt`: toggle Pi in a right-side panel
+- `<F9>`, then `p`: toggle Pi in a right-side panel
 - `<leader>apf`: open Pi in a floating window
 - `<leader>apc`: continue the latest session for the current project
 - `<leader>apr`: pick and resume a project session
