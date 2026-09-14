@@ -83,6 +83,14 @@ npm --prefix ~/.pi/agent/git/github.com/yanralapdy/pi-web-surf audit --omit=dev
 
 The Neovim integration enables `internet_search` and `internet_scrape` alongside Pi's built-in coding tools. The extension also provides code search, library documentation, and site crawling, but they are excluded from the default tool set to keep prompts smaller and web access focused.
 
+Install the curated Elixir and Phoenix skill package:
+
+```shell
+pi install git:github.com/ccarvalho-eng/pi-elixir-phoenix
+```
+
+The package provides focused skills for Elixir, Ecto, Phoenix, LiveView, Oban, testing, migrations, security, debugging, verification, runtime durability, safe PostgreSQL inspection through `psql`, version-matched HexDocs lookup, and optional Tidewave inspection. Start a fresh Pi session after installing or updating it. Pi can select skills automatically, or load one explicitly with commands such as `/skill:phx-investigate`, `/skill:postgres-psql`, and `/skill:hexdocs-lookup`.
+
 Pi extensions execute with the same permissions as Pi. Both extension revisions are pinned so upgrades remain deliberate; review newer revisions before changing the pins. The web extension's audit commands update stale transitive dependencies within its installed package without changing its source, then confirm the result.
 
 `qwen3-coder:deep` and `mistral-small3.2:writing` support Pi tool calls through the native provider. The fast Qwen 2.5 Coder profile emits tool-call JSON as text, so use it for text-only questions and switch to the deep model for tasks that need file, shell, or web tools.
@@ -99,7 +107,8 @@ The `pi install` commands record both pinned packages in `~/.pi/agent/settings.j
   "defaultModel": "qwen3-coder:deep",
   "packages": [
     "git:github.com/CaptCanadaMan/pi-ollama@94103da20c02ae26d27378c86f12c8356fb2901b",
-    "git:github.com/yanralapdy/pi-web-surf@edc88b5cbf24ae8199c3c183f6f3e42a9988ab52"
+    "git:github.com/yanralapdy/pi-web-surf@edc88b5cbf24ae8199c3c183f6f3e42a9988ab52",
+    "git:github.com/ccarvalho-eng/pi-elixir-phoenix"
   ]
 }
 ```
@@ -128,6 +137,7 @@ ollama list
 pi --list-models
 ketch --version
 ketch search "Pi coding agent" --limit 1 --json
+pi list
 pi --no-session --provider ollama --model qwen3-coder:deep --tools internet_search --print \
   "Use internet_search with the query Pi coding agent. Reply only with the first result title."
 ollama run qwen2.5-coder:fast "Reply with OK"
