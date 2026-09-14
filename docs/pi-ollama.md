@@ -117,14 +117,7 @@ The `pi install` commands record both pinned packages in `~/.pi/agent/settings.j
 
 `pi.nvim` reads the global Pi configuration and exposes the same three local models:
 
-- `<F9>`, then `p`: toggle Pi in a right-side panel
-- `<leader>apf`: open Pi in a floating window
-- `<leader>apc`: continue the latest session for the current project
-- `<leader>apr`: pick and resume a project session
-- `<leader>apm`: select the deep, fast, or writing model
-- `<leader>aps`: mention the current file or visual selection
-- `<leader>apa`: open the next Pi attention request
-- `<leader>apx`: abort the current Pi operation
+- `<leader>ap`: toggle Pi in a right-side panel
 
 Pi runs in RPC mode from Neovim. Project-local Pi settings, extensions, and skills remain disabled until that project is explicitly trusted in the Pi CLI.
 
