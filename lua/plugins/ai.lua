@@ -173,11 +173,14 @@ return {
   },
 
   {
-    "alex35mil/pi.nvim",
+    "ccarvalho-eng/pi.nvim",
+    branch = "ccarvalho/visible-agent-status",
+    dependencies = { "hrsh7th/nvim-cmp" },
     cmd = {
       "Pi",
       "PiAbort",
       "PiAttention",
+      "PiClear",
       "PiContinue",
       "PiResume",
       "PiSelectModel",
@@ -202,10 +205,19 @@ return {
         default = "side",
         side = {
           position = "right",
-          width = 80,
+          width = 70,
         },
       },
     },
+    config = function(_, opts)
+      require("pi").setup(opts)
+
+      local cmp = require("cmp")
+      cmp.register_source("pi", require("pi.completion.cmp").new())
+      cmp.setup.filetype("pi-chat-prompt", {
+        sources = { { name = "pi" } },
+      })
+    end,
     keys = {
       {
         "<leader>apt",
