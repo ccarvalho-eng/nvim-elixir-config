@@ -81,7 +81,11 @@ return {
   },
 
   {
-    "folke/snacks.nvim",
+    -- TEMP: tracking our fork branch until the upstream PR merges the
+    -- gh_start_review empty-input fix (folke/snacks.nvim, fix/gh-start-review-empty-input).
+    -- Revert to "folke/snacks.nvim" (drop `branch`) once merged.
+    "ccarvalho-eng/snacks.nvim",
+    branch = "fix/gh-start-review-empty-input",
     lazy = false,
     priority = 1000,
     opts = {
