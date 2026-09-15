@@ -29,6 +29,7 @@ return {
         { "<leader>gl", group = "Links" },
         { "<leader>gw", group = "Worktrees" },
         { "<leader>o", group = "Notes" },
+        { "<leader>r", group = "Feed" },
         { "<leader>s", group = "Search/Replace" },
         { "<leader>t", group = "Tests" },
         { "<leader>u", group = "Utilities" },
