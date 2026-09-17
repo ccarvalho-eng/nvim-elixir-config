@@ -18,6 +18,7 @@ return {
       -- Register key group names
       wk.add({
         { "<leader>a", group = "AI" },
+        { "<leader>ao", group = "OpenCode" },
         { "<leader>b", group = "Buffer" },
         { "<leader>bs", group = "Sort" },
         { "<leader>c", group = "Code" },

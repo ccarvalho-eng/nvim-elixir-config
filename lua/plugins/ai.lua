@@ -89,6 +89,40 @@ return {
   },
 
   {
+    "sudo-tee/opencode.nvim",
+    dependencies = {
+      "folke/snacks.nvim",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = "opencode_output",
+        opts = {
+          anti_conceal = { enabled = false },
+          file_types = { "opencode_output" },
+        },
+      },
+    },
+    opts = {
+      -- Default prefix is <leader>o, which collides with the Notes group
+      -- (obsidian). <leader>ap now belongs to Pi, so scope every opencode
+      -- keymap under <leader>ao instead.
+      keymap_prefix = "<leader>ao",
+      preferred_picker = "telescope",
+      keymap = {
+        editor = {
+          ["<leader>aom"] = { "configure_provider", desc = "Select OpenCode model" },
+        },
+      },
+      ui = {
+        position = "right",
+        window_width = 0.30,
+      },
+    },
+    config = function(_, opts)
+      require("opencode").setup(opts)
+    end,
+  },
+
+  {
     "ccarvalho-eng/pi.nvim",
     branch = "ccarvalho/visible-agent-status",
     dependencies = { "hrsh7th/nvim-cmp" },
