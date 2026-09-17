@@ -37,6 +37,16 @@ return {
           { "https://rss.arxiv.org/rss/cs.DC", name = "arXiv cs.DC" },
         },
       },
+
+      options = {
+        index = {
+          wo = {
+            number = true,
+            relativenumber = true,
+            statuscolumn = "",
+          },
+        },
+      },
     },
   },
 }
