@@ -3,10 +3,10 @@ return {
     "neo451/feed.nvim",
     cmd = "Feed",
     keys = {
-      { "<leader>rf", "<cmd>Feed index<cr>", desc = "Open feed list" },
-      { "<leader>rs", "<cmd>Feed search<cr>", desc = "Search/filter feeds" },
-      { "<leader>ru", "<cmd>Feed update<cr>", desc = "Update all feeds" },
-      { "<leader>rl", "<cmd>Feed list<cr>", desc = "List feed sources" },
+      { "<leader>nf", "<cmd>Feed index<cr>", desc = "Open feed list" },
+      { "<leader>ns", "<cmd>Feed search<cr>", desc = "Search/filter feeds" },
+      { "<leader>nu", "<cmd>Feed update<cr>", desc = "Update all feeds" },
+      { "<leader>nl", "<cmd>Feed list<cr>", desc = "List feed sources" },
     },
     opts = {
       feeds = {

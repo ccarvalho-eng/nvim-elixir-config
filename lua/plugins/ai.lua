@@ -33,7 +33,7 @@ return {
     end,
     keys = {
       {
-        "<leader>aC",
+        "<leader>ax",
         function()
           require("codex").toggle()
         end,

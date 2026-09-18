@@ -43,6 +43,7 @@ The leader key is `Space`; the local leader is `,`. Press `Space` and pause to o
 | `<leader>d` | Databases |
 | `<leader>f` | File and project discovery |
 | `<leader>g` | Git, diffs, links, and worktrees |
+| `<leader>n` | News feeds |
 | `<leader>o` | Obsidian notes |
 | `<leader>s` | Search and replacement |
 | `<leader>t` | Tests |
