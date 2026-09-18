@@ -227,6 +227,9 @@ return {
     config = function()
       require("noice").setup({
         lsp = {
+          -- Fidget owns LSP progress; noice enables it by default and would
+          -- render a second widget in the same corner.
+          progress = { enabled = false },
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
@@ -238,7 +241,7 @@ return {
           command_palette = true,
           long_message_to_split = true,
           inc_rename = false,
-          lsp_doc_border = false,
+          lsp_doc_border = true,
         },
       })
     end,
