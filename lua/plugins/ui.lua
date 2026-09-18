@@ -141,7 +141,8 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { "filename" },
+          -- The winbar already shows the filename with its path.
+          lualine_c = {},
           lualine_x = { "encoding", "fileformat", "filetype" },
           lualine_y = { "progress" },
           lualine_z = { "location" },
