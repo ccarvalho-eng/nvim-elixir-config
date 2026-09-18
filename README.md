@@ -1,6 +1,6 @@
 # Neovim configuration
 
-An opinionated Neovim setup for Elixir-focused development on macOS. It also includes Lua and Gleam language support, Git and worktree workflows, database tools, Obsidian integration, and optional AI assistants.
+An opinionated Neovim setup for Elixir-focused development on macOS. It also includes Lua and Gleam language support, Git and worktree workflows, Obsidian integration, and optional AI assistants.
 
 This is a personal configuration rather than a general-purpose Neovim distribution. Machine-specific integrations are isolated behind environment variables or documented conventions where practical.
 
@@ -40,7 +40,6 @@ The leader key is `Space`; the local leader is `,`. Press `Space` and pause to o
 | `<leader>a` | AI assistants |
 | `<leader>b` | Buffers |
 | `<leader>c` | Code and LSP actions |
-| `<leader>d` | Databases |
 | `<leader>f` | File and project discovery |
 | `<leader>g` | Git, diffs, links, and worktrees |
 | `<leader>n` | News feeds |
