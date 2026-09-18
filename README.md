@@ -11,7 +11,7 @@ This is a personal configuration rather than a general-purpose Neovim distributi
 - Completion, diagnostics, formatting, and test navigation.
 - Telescope search, nvim-tree file browsing, and project-wide replacement.
 - Gitsigns, Diffview, LazyGit, permalinks, and tab-local worktree switching.
-- Optional Codex, Claude Code, OpenCode, Pi, Ollama, and Obsidian integrations.
+- Optional Codex, Claude Code, OpenCode, Ollama, and Obsidian integrations.
 
 ## Requirements
 
@@ -96,5 +96,4 @@ Keep credentials and machine-specific paths out of the repository. Prefer enviro
 ## Guides
 
 - [System dependencies](docs/dependencies.md)
-- [Pi with local Ollama models](docs/pi-ollama.md)
 - [OpenCode with local Ollama models](docs/opencode-ollama.md)

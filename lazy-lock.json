@@ -31,7 +31,6 @@
   "obsidian.nvim": { "branch": "main", "commit": "7a2b7caf41de196de66f27c1969d0d429810621a" },
   "onedark.nvim": { "branch": "master", "commit": "df4792accde9db0043121f32628bcf8e645d9aea" },
   "opencode.nvim": { "branch": "main", "commit": "6071fe7607a3a40182a0604558f98fe3e19505e5" },
-  "pi.nvim": { "branch": "ccarvalho/visible-agent-status", "commit": "070c3064c09b94102fcb71e1aa530ce88fa25e5e" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "render-markdown.nvim": { "branch": "main", "commit": "640a3ec6d538bad17c328be373c7cad0293d9589" },
   "snacks.nvim": { "branch": "fix/gh-start-review-empty-input", "commit": "be76591d3d578a5cdcfb0ee1c578e539c5d2edea" },

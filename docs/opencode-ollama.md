@@ -1,7 +1,7 @@
 # OpenCode with Ollama
 
-Local coding and writing setup for a 32 GB M1 Pro MacBook. OpenCode shares the
-same three 32K Ollama profiles as Pi.
+Local coding and writing setup for a 32 GB M1 Pro MacBook, with 32K model
+contexts to leave memory for the operating system and development tools.
 
 | Model | Real model | Purpose | Size |
 | --- | --- | --- | --- |
@@ -19,12 +19,49 @@ nvim --version
 
 Start the Ollama app before continuing.
 
-## 2. Build the shared profiles
+## 2. Pull the models
 
-Follow sections 2 and 3 of [Pi with Ollama](pi-ollama.md) to pull the models and
-build the 32K profiles. OpenCode reuses them as-is.
+```shell
+ollama pull qwen3-coder:30b
+ollama pull qwen2.5-coder:14b
+ollama pull mistral-small3.2
+```
 
-## 3. Configure OpenCode
+## 3. Create the 32K profiles
+
+Create `~/.config/ollama/Modelfile.qwen3-coder-deep`:
+
+```dockerfile
+FROM qwen3-coder:30b
+
+PARAMETER num_ctx 32768
+```
+
+Create `~/.config/ollama/Modelfile.qwen2.5-coder-fast`:
+
+```dockerfile
+FROM qwen2.5-coder:14b
+
+PARAMETER num_ctx 32768
+```
+
+Create `~/.config/ollama/Modelfile.mistral-small3.2-writing`:
+
+```dockerfile
+FROM mistral-small3.2
+
+PARAMETER num_ctx 32768
+```
+
+Build the profiles:
+
+```shell
+ollama create qwen3-coder:deep -f ~/.config/ollama/Modelfile.qwen3-coder-deep
+ollama create qwen2.5-coder:fast -f ~/.config/ollama/Modelfile.qwen2.5-coder-fast
+ollama create mistral-small3.2:writing -f ~/.config/ollama/Modelfile.mistral-small3.2-writing
+```
+
+## 4. Configure OpenCode
 
 Set `~/.config/opencode/opencode.jsonc`:
 
@@ -70,11 +107,10 @@ Set `~/.config/opencode/opencode.jsonc`:
 
 The deep model is the default.
 
-## 4. Use it from Neovim
+## 5. Use it from Neovim
 
 `opencode.nvim` reads the global OpenCode configuration automatically. Every
-mapping sits under `<leader>ao`, since `<leader>ap` belongs to Pi and
-`<leader>o` belongs to the Notes group:
+mapping sits under `<leader>ao`, since `<leader>o` belongs to the Notes group:
 
 - `<leader>aog`: toggle OpenCode
 - `<leader>aoi`: open the prompt input
@@ -83,7 +119,7 @@ mapping sits under `<leader>ao`, since `<leader>ap` belongs to Pi and
 Run `:Lazy sync` after adding the plugin, then `<leader>ao` to see the full
 group in which-key.
 
-## 5. Verify
+## 6. Verify
 
 ```shell
 ollama list

@@ -103,8 +103,7 @@ return {
     },
     opts = {
       -- Default prefix is <leader>o, which collides with the Notes group
-      -- (obsidian). <leader>ap now belongs to Pi, so scope every opencode
-      -- keymap under <leader>ao instead.
+      -- (obsidian), so scope every opencode keymap under <leader>ao instead.
       keymap_prefix = "<leader>ao",
       preferred_picker = "telescope",
       keymap = {
@@ -120,61 +119,5 @@ return {
     config = function(_, opts)
       require("opencode").setup(opts)
     end,
-  },
-
-  {
-    "ccarvalho-eng/pi.nvim",
-    branch = "ccarvalho/visible-agent-status",
-    dependencies = { "hrsh7th/nvim-cmp" },
-    cmd = {
-      "Pi",
-      "PiAbort",
-      "PiAttention",
-      "PiClear",
-      "PiContinue",
-      "PiResume",
-      "PiSelectModel",
-      "PiSendMention",
-      "PiStop",
-      "PiToggleChat",
-      "PiToggleLayout",
-    },
-    opts = {
-      cli = {
-        args = {
-          "--tools",
-          "read,bash,edit,write,grep,find,ls,internet_search,internet_scrape",
-        },
-      },
-      models = {
-        "qwen3-coder:deep",
-        "qwen2.5-coder:fast",
-        "mistral-small3.2:writing",
-      },
-      layout = {
-        default = "side",
-        side = {
-          position = "right",
-          width = 70,
-        },
-      },
-    },
-    config = function(_, opts)
-      require("pi").setup(opts)
-
-      local cmp = require("cmp")
-      cmp.register_source("pi", require("pi.completion.cmp").new())
-      cmp.setup.filetype("pi-chat-prompt", {
-        sources = { { name = "pi" } },
-      })
-    end,
-    keys = {
-      {
-        "<leader>ap",
-        "<cmd>Pi layout=side<cr>",
-        desc = "Toggle Pi",
-        mode = { "n", "v" },
-      },
-    },
   },
 }
