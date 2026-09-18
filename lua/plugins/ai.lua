@@ -37,14 +37,14 @@ return {
         function()
           require("codex").toggle()
         end,
-        desc = "Toggle Codex",
+        desc = "Codex",
       },
       {
         "<F9>",
         function()
           require("codex").toggle()
         end,
-        desc = "Toggle Codex",
+        desc = "Codex",
         mode = { "n", "t" },
       },
     },
@@ -83,7 +83,7 @@ return {
       {
         "<leader>ac",
         "<cmd>ClaudeCode<cr>",
-        desc = "Toggle Claude Code",
+        desc = "Claude Code",
       },
     },
   },
